@@ -33,10 +33,8 @@ function initModulePage() {
     CURRENT_MODULE_ID = getModuleIdFromURL();
 
     if (!CURRENT_MODULE_ID) {
-        // 🔥 PERBAIKAN KRUSIAL: Alihkan ke Dashboard jika ID Modul tidak ditemukan.
-        // Dashboard (index.html) akan memiliki logika untuk menentukan Modul yang harus dibuka.
-        window.location.href = '../index.html'; 
-        return; // Hentikan eksekusi selanjutnya
+        displayError("Modul tidak ditemukan. ID Modul tidak tersedia di URL.");
+        return;
     }
 
     // 2. Muat Data
