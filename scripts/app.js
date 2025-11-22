@@ -364,12 +364,15 @@ function renderRecommendations(data) {
     let nextModuleId = null;
     let moduleProgress = 0;
 
-    for (const moduleId in data.modules) {
-        const module = data.modules[moduleId];
-        if (module.status !== 'completed') {
-            nextModuleId = moduleId;
-            moduleProgress = module.progress;
-            break; 
+    // 🔥 PERBAIKAN KRUSIAL: Pastikan ada modul yang tersedia
+    if (data.totalModules > 0) {
+        for (const moduleId in data.modules) {
+            const module = data.modules[moduleId];
+            if (module.status !== 'completed') {
+                nextModuleId = moduleId;
+                moduleProgress = module.progress;
+                break; 
+            }
         }
     }
     
@@ -383,7 +386,7 @@ function renderRecommendations(data) {
             
             currentModuleTitle.textContent = `${moduleTitle} (${moduleProgress}%)`;
             
-            // Link ke template dinamis module.html
+            // 🔥 PERBAIKAN: Link ke template dinamis module.html dengan path yang benar
             moduleRecommendationLink.href = `pages/module.html?id=${nextModuleId}`; 
             
             document.querySelector('.module-recommendation p').textContent = `Anda telah menyelesaikan ${moduleProgress}% dari modul ini.`;
