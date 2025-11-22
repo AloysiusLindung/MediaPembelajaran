@@ -498,6 +498,89 @@ function getProgressStats() {
 // VI. INITIALIZATION & EXPORT
 // =======================================================
 
+// =======================================================
+// DASHBOARD RENDERING LOGIC (BARU)
+// =======================================================
+
+/**
+ * Merender bagian rekomendasi Modul/Arena Pancasila di Dashboard.
+ * @param {object} studentData - Data progres siswa aktif.
+ * @param {object} cmsContent - Konten CMS.
+ */
+function renderRecommendations(studentData, cmsContent) {
+    // KODE INTI YANG ANDA TANYAKAN BERADA DI SINI
+    
+    // 1. Dapatkan daftar ID modul yang ada dari CMS
+    const moduleIds = Object.keys(cmsContent.modules || {});
+    
+    let nextModuleId = null;
+
+    // 2. Cari modul yang BELUM SELESAI (Status 'not_started' atau 'in_progress')
+    for (const id of moduleIds) {
+        if (studentData.modules[id] && studentData.modules[id].status !== 'completed') {
+            nextModuleId = id;
+            break; // Ambil modul pertama yang belum selesai
+        }
+    }
+
+    // 3. Update Link Navigasi dan Konten Rekomendasi
+    // Asumsi: Anda sudah menambahkan elemen dengan ID berikut di index.html
+    const navModuleLink = document.getElementById('navModuleLink'); 
+    const recommendationTitle = document.getElementById('recommendationTitle');
+    const recommendationText = document.getElementById('recommendationText');
+    
+    if (navModuleLink) {
+        if (nextModuleId) {
+            // KODE PENGGANTIAN 1: Arahkan ke modul yang sedang/belum dimulai
+            navModuleLink.href = `pages/module.html?id=${nextModuleId}`;
+            if (recommendationTitle) recommendationTitle.textContent = "Lanjutkan Belajar Modul!";
+            if (recommendationText) recommendationText.textContent = `Ayo selesaikan modul "${cmsContent.modules[nextModuleId].title}" dan dapatkan poin!`;
+            navModuleLink.textContent = "Mulai / Lanjutkan Modul →";
+        } else {
+            // KODE PENGGANTIAN 2: Semua modul selesai -> Arahkan ke Arena
+            navModuleLink.href = 'pages/arena-pancasila.html'; 
+            if (recommendationTitle) recommendationTitle.textContent = "Semua Modul Selesai! 🎉";
+            if (recommendationText) recommendationText.textContent = "Anda telah menyelesaikan semua materi. Saatnya menguji pemahaman Anda di Arena Pancasila!";
+            navModuleLink.textContent = "Kunjungi Arena Pancasila →";
+        }
+    }
+}
+
+
+/**
+ * Fungsi utama untuk merender semua data dinamis di index.html (Dashboard).
+ */
+function renderDashboard() {
+    // 1. Muat Data
+    const session = window.getActiveSession();
+    if (!session) return;
+    
+    const studentData = window.loadActiveStudentData();
+    const cmsContent = window.loadCMSContent();
+    
+    // 2. Update Info User
+    document.getElementById('userName').textContent = session.username;
+    
+    // 3. Update Poin & Progress Global
+    document.getElementById('userPoints').textContent = studentData.points;
+    window.updateModuleProgress(); // Pastikan progres global ter-update
+    document.getElementById('overallProgressText').textContent = `${studentData.overallProgress.toFixed(0)}%`;
+    document.getElementById('overallProgressBar').style.width = `${studentData.overallProgress.toFixed(0)}%`;
+
+    // 4. Render Rekomendasi
+    renderRecommendations(studentData, cmsContent);
+
+    // 5. Tampilkan Badges
+    const badgeContainer = document.getElementById('badgeList');
+    if (badgeContainer) {
+        badgeContainer.innerHTML = studentData.badges.map(badge => 
+            `<span class="badge badge-primary">${badge}</span>`
+        ).join('');
+    }
+    
+    // Catatan: Logika Leaderboard (Papan Skor) memerlukan implementasi terpisah.
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Ambil Sesi Aktif
     const session = window.getActiveSession && window.getActiveSession(); 
@@ -539,3 +622,4 @@ window.addArenaPoints = addArenaPoints;
 window.getProgressStats = getProgressStats;
 window.recalculateOverallProgress = recalculateOverallProgress;
 window.checkForNewBadges = checkForNewBadges;
+
