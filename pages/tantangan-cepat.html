@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tantangan Cepat | Arena Pancasila</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Gaya Khusus Tantangan Cepat */
+        .challenge-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 30px;
+            background-color: var(--color-white);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timer-display {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            font-size: 2.2em;
+            font-weight: 700;
+            text-align: center;
+            padding: 15px 0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .timer-warning {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .question-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+        
+        .question-card p {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--color-text-dark);
+        }
+
+        .question-card label {
+            display: block;
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        .question-card label:hover {
+            background-color: #f0f0f0;
+            border-color: #e0e0e0;
+        }
+        
+        .question-card input[type="radio"]:checked + label {
+            background-color: #e3f2fd;
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .challenge-actions {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Overlay Hasil */
+        .result-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .result-box {
+            background-color: var(--color-white);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            max-width: 400px;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .challenge-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: var(--color-secondary);
+            border-radius: 6px;
+            color: var(--color-text-dark);
+        }
+
+        .challenge-info p {
+            margin: 5px 0;
+            font-weight: 500;
+        }
+
+        .question-number {
+            display: inline-block;
+            background-color: var(--color-primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin-right: 8px;
+        }
+
+        input[type="radio"] {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <h1>Jelajah Demokrasi</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="module.html">Modul Belajar</a></li>
+                <li><a href="arena-pancasila.html" class="active">Arena Pancasila</a></li> 
+            </ul>
+        </nav>
+        <div class="user-profile">
+            <span id="userName">Memuat...</span>
+            <div class="avatar"></div>
+        </div>
+    </header>
+
+    <main class="challenge-container">
+        
+        <h1 style="text-align: center; color: var(--color-primary);">🚀 Tantangan Cepat: Uji Wawasan Pancasila</h1>
+        
+        <div class="challenge-info">
+            <p id="challengeDescription">Jawab pertanyaan secepat dan seakurat mungkin. Kecepatan menentukan poin bonus Anda!</p>
+            <p>Jumlah Soal: <span id="questionCount">0</span> | Waktu: <span id="timeLimit">60</span> detik</p>
+        </div>
+
+        <!-- Display Waktu -->
+        <div class="timer-display" id="timerDisplay">
+            Waktu Tersisa: <span id="timer">60</span> detik
+        </div>
+        
+        <form id="challengeForm">
+            <!-- Soal akan di-render di sini oleh JavaScript -->
+            <div id="questionsContainer">
+                <p style="text-align: center;">Memuat soal tantangan...</p>
+            </div>
+            
+            <div class="challenge-actions">
+                <button type="button" id="submitChallengeBtn" class="btn btn-primary btn-large" disabled>
+                    Selesaikan Tantangan & Lihat Poin!
+                </button>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                    Pastikan semua soal telah dijawab sebelum mengirim
+                </p>
+            </div>
+        </form>
+    </main>
+    
+    <!-- Overlay Hasil -->
+    <div id="resultOverlay" class="result-overlay">
+        <div class="result-box">
+            <h2>🎉 Tantangan Selesai!</h2>
+            <p style="margin-top: 15px;">Waktu Anda: <span id="finalTime" style="font-weight: 700;"></span></p>
+            <p>Jawaban Benar: <span id="correctCount" style="font-weight: 700;"></span> / <span id="totalQuestionsFinal"></span></p>
+            <h3 style="color: var(--color-accent); margin: 15px 0;">Total Poin Arena: <span id="totalPoints" style="font-size: 1.5em;"></span></h3>
+            <a href="arena-pancasila.html" class="btn btn-primary" style="margin-top: 20px;">Kembali ke Arena</a>
+        </div>
+    </div>
+
+    <!-- Script Logika Autentikasi dan Data -->
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/app.js"></script> 
+    
+    <!-- Script Logika Tantangan Cepat -->
+    <script>
+        const CMS_QUIZ_KEY = 'quick_challenge_quiz';
+        const POINTS_PER_CORRECT = 50;
+        const BONUS_POINTS_PER_SECOND = 2;
+        const MAX_TIME = 60;
+        
+        let timeLeft = MAX_TIME;
+        let timerInterval;
+        let startTime;
+        let quizQuestions = [];
+
+        const timerDisplay = document.getElementById('timer');
+        const timerContainer = document.getElementById('timerDisplay');
+        const submitBtn = document.getElementById('submitChallengeBtn');
+        const questionsContainer = document.getElementById('questionsContainer');
+        const questionCountElement = document.getElementById('questionCount');
+
+        // =======================================================
+        // I. MANAJEMEN TIMER
+        // =======================================================
+
+        function startTimer() {
+            startTime = Date.now();
+            submitBtn.disabled = false;
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = timeLeft;
+
+                if (timeLeft <= 10) {
+                    timerContainer.classList.add('timer-warning');
+                }
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = 'WAKTU HABIS!';
+                    submitQuiz(true);
+                }
+            }, 1000);
+        }
+
+        // =======================================================
+        // II. CMS & RENDER SOAL
+        // =======================================================
+
+        function renderQuizQuestions() {
+            const cmsContent = window.loadCMSContent();
+            
+            // Load soal dari CMS - dinamis sepenuhnya
+            quizQuestions = cmsContent.quizzes?.[CMS_QUIZ_KEY] || [];
+
+            if (quizQuestions.length === 0) {
+                questionsContainer.innerHTML = '<p style="color:red; text-align:center;">Soal tantangan belum diinput oleh Guru/Administrator.</p>';
+                submitBtn.disabled = true;
+                return;
+            }
+
+            // Update informasi jumlah soal
+            questionCountElement.textContent = quizQuestions.length;
+
+            questionsContainer.innerHTML = '';
+            
+            quizQuestions.forEach((qItem, index) => {
+                const qId = qItem.id || `qc${index + 1}`;
+                const questionCard = document.createElement('div');
+                questionCard.classList.add('question-card');
+                
+                let optionsHTML = '';
+                qItem.options.forEach((optionText, optIndex) => {
+                    const optionValue = optionText;
+                    optionsHTML += `
+                        <label>
+                            <input type="radio" name="${qId}" value="${optionValue}" required>
+                            ${String.fromCharCode(65 + optIndex)}. ${optionText}
+                        </label>
+                    `;
+                });
+
+                questionCard.innerHTML = `
+                    <p><span class="question-number">${index + 1}</span>${qItem.q}</p>
+                    ${optionsHTML}
+                `;
+                questionsContainer.appendChild(questionCard);
+            });
+            
+            startTimer();
+        }
+
+        // =======================================================
+        // III. LOGIKA SUBMIT & SKOR
+        // =======================================================
+
+        function submitQuiz(timeUp = false) {
+            clearInterval(timerInterval); 
+            submitBtn.disabled = true;
+            
+            const totalQ = quizQuestions.length;
+            const finalTimeTaken = timeUp ? MAX_TIME : Math.floor((Date.now() - startTime) / 1000);
+            
+            let correctCount = 0;
+            
+            // Hitung jawaban benar
+            quizQuestions.forEach(qItem => {
+                const qId = qItem.id || `qc${quizQuestions.indexOf(qItem) + 1}`;
+                const selected = document.querySelector(`input[name="${qId}"]:checked`);
+                if (selected && selected.value === qItem.a) {
+                    correctCount++;
+                }
+            });
+            
+            // Hitung skor
+            const scoreBasedOnAccuracy = correctCount * POINTS_PER_CORRECT;
+            const timeBonus = Math.max(0, MAX_TIME - finalTimeTaken) * BONUS_POINTS_PER_SECOND;
+            const finalScore = scoreBasedOnAccuracy + timeBonus;
+            
+            // Update Tampilan Overlay
+            document.getElementById('finalTime').textContent = `${finalTimeTaken} detik`;
+            document.getElementById('correctCount').textContent = correctCount;
+            document.getElementById('totalQuestionsFinal').textContent = totalQ;
+            document.getElementById('totalPoints').textContent = finalScore;
+            
+            // Simpan Hasil ke Leaderboard
+            if (window.loadActiveStudentData && window.saveActiveStudentData) {
+                 saveChallengeResult(finalScore, finalTimeTaken);
+            }
+
+            // Tampilkan Hasil
+            document.getElementById('resultOverlay').style.display = 'flex';
+        }
+
+        function saveChallengeResult(score, time) {
+            const data = window.loadActiveStudentData();
+            if (!data) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const allData = window.loadAllStudentsData();
+
+            // Tandai Murid sudah mencoba Tantangan Cepat
+            data.challenges = data.challenges || {};
+            data.challenges.quick_challenge = {
+                attempted: true,
+                lastScore: score,
+                timeTaken: time,
+                completedAt: new Date().toISOString()
+            };
+            
+            // Update poin arena
+            data.arenaPoints = (data.arenaPoints || 0) + score;
+            window.saveActiveStudentData(data);
+
+            // Update Leaderboard Data di CMS
+            const cms = window.loadCMSContent();
+            let leaderboard = cms.leaderboard || [];
+
+            const userName = data.userName;
+            const existingEntryIndex = leaderboard.findIndex(entry => entry.username === userName);
+
+            if (existingEntryIndex !== -1) {
+                if (score > leaderboard[existingEntryIndex].score || 
+                   (score === leaderboard[existingEntryIndex].score && time < leaderboard[existingEntryIndex].time)) {
+                    leaderboard[existingEntryIndex] = { 
+                        username: userName, 
+                        score: score, 
+                        time: time,
+                        date: new Date().toISOString()
+                    };
+                }
+            } else {
+                leaderboard.push({ 
+                    username: userName, 
+                    score: score, 
+                    time: time,
+                    date: new Date().toISOString()
+                });
+            }
+            
+            // Urutkan leaderboard berdasarkan skor (tertinggi) dan waktu (tercepat)
+            leaderboard.sort((a, b) => {
+                if (b.score !== a.score) return b.score - a.score;
+                return a.time - b.time;
+            });
+            
+            cms.leaderboard = leaderboard;
+            window.saveCMSContent(cms);
+        }
+
+        // =======================================================
+        // IV. INITIALIZATION
+        // =======================================================
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check Autentikasi
+            if (typeof window.checkAuthentication === 'function') {
+                const session = window.checkAuthentication('murid');
+                if (!session) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+                
+                // Cek apakah sudah pernah mencoba
+                const data = window.loadActiveStudentData();
+                if (data.challenges && data.challenges.quick_challenge && data.challenges.quick_challenge.attempted) {
+                     alert("Anda sudah menyelesaikan tantangan ini. Hanya satu kesempatan yang diberikan.");
+                     window.location.href = 'arena-pancasila.html';
+                     return;
+                }
+                document.getElementById('userName').textContent = data.userName;
+            } else {
+                 window.location.href = 'login.html';
+                 return;
+            }
+            
+            // Pasang event listener untuk tombol submit
+            submitBtn.addEventListener('click', () => submitQuiz(false));
+
+            // Render soal
+            renderQuizQuestions();
+        });
+    </script>
+</body>
+</html>

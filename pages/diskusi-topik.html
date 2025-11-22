@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Diskusi Topik | Arena Pancasila</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Gaya Khusus untuk Halaman Diskusi (Bisa dipindahkan ke main.css) */
+        .discussion-container {
+            max-width: 1000px;
+            margin: 100px auto 50px;
+            padding: 30px;
+            background-color: var(--color-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .topic-header {
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .topic-header h2 {
+            font-size: 2em;
+            color: var(--color-primary);
+        }
+        
+        .topic-details {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .comment-section {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .comment-input-section {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 6px;
+        }
+        
+        .comment-input-section textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            resize: vertical;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .comment-input-section textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+        
+        .comment-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .comment-item {
+            border: 1px solid #eee;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            background-color: #ffffff;
+            transition: box-shadow 0.3s;
+        }
+
+        .comment-item:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-item strong {
+            color: var(--color-primary);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .comment-meta {
+            font-size: 0.8em;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <h1>Jelajah Demokrasi</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="module.html">Modul Belajar</a></li>
+                <li><a href="arena-pancasila.html" class="active">Arena Pancasila</a></li> 
+            </ul>
+        </nav>
+        <div class="user-profile">
+            <span id="userName">Siswa PPKN</span>
+            <div class="avatar"></div>
+        </div>
+    </header>
+
+    <main class="discussion-container">
+        
+        <a href="arena-pancasila.html" class="back-button btn btn-secondary btn-small">
+            ← Kembali ke Arena Diskusi
+        </a>
+        
+        <div class="topic-header">
+            <h2 id="topicTitle">Memuat Judul Topik...</h2>
+            <p class="topic-details">
+                Sila: <span id="topicSila">Memuat...</span> | 
+                Dibuat oleh: <span id="topicAuthor">Memuat...</span> |
+                Tanggal: <span id="topicDate">Memuat...</span>
+            </p>
+        </div>
+
+        <section class="topic-description">
+            <p id="topicDescription">Memuat deskripsi topik. Silakan tunggu...</p>
+        </section>
+
+        <section class="comment-input-section">
+            <h3>Berikan Pendapat Anda</h3>
+            
+            <form id="commentForm">
+                <textarea id="commentInput" placeholder="Tulis pendapat atau argumen Anda di sini..." rows="4" required></textarea>
+                
+                <button type="submit" class="btn btn-primary"> 
+                    Kirim Pendapat
+                </button>
+            </form>
+        </section>
+
+        <section class="comment-section">
+            <h3 id="commentCountHeader">Pendapat Murid (0)</h3> 
+            <ul class="comment-list" id="commentList">
+                <li style="text-align: center; color: #777;">Memuat komentar atau belum ada pendapat...</li>
+            </ul>
+        </section>
+
+    </main>
+    
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/app.js"></script>
+    <script src="../scripts/arena.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Event listener untuk form komentar
+            const commentForm = document.getElementById('commentForm');
+            if (commentForm) {
+                commentForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    if (typeof submitCommentToTopic === 'function') {
+                        submitCommentToTopic();
+                    }
+                });
+            }
+
+            // Ambil parameter topicId dari URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const topicId = urlParams.get('topicId');
+            
+            if (!topicId) {
+                document.getElementById('topicTitle').textContent = "Topik Tidak Ditemukan";
+                document.getElementById('topicDescription').textContent = "Parameter topicId tidak ditemukan dalam URL.";
+                return;
+            }
+
+            // Catatan: Logika pemuatan topik dan komentar akan ditangani oleh arena.js
+            console.log('Membuka diskusi topik dengan ID:', topicId);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Kuis Akhir Modul | Jelajah Demokrasi</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Gaya Khusus untuk Kuis */
+        .quiz-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: var(--color-white);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quiz-container h2 {
+            text-align: center;
+            color: var(--color-primary);
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+
+        .question-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .question-card p {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .question-card label {
+            display: block;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .question-card label:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .question-card input[type="radio"]:checked + label {
+            background-color: #e3f2fd; /* Warna saat dipilih */
+            border: 1px solid var(--color-primary);
+        }
+        
+        .quiz-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <h1>Jelajah Demokrasi</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="module.html?id=norma" class="active">Modul Belajar</a></li>
+                <li><a href="arena-pancasila.html">Arena Pancasila</a></li> 
+            </ul>
+        </nav>
+        <div class="user-profile">
+            <span id="userName">Siswa PPKN</span>
+            <div class="avatar"></div>
+        </div>
+    </header>
+
+    <main class="quiz-container">
+        
+        <h2 id="quizTitle">Memuat Kuis...</h2>
+        
+        <form id="quizForm">
+            <div id="questionsContainer">
+                <p style="text-align: center;">Menunggu Guru mengisi soal kuis...</p>
+            </div>
+            
+            <div class="quiz-actions">
+                <button type="submit" id="submitQuizBtn" class="btn btn-primary btn-large" disabled>
+                    Selesaikan Kuis & Dapatkan Poin!
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/app.js"></script>
+    <script src="../scripts/quiz.js"></script> 
+</body>
+</html>

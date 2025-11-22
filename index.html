@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Jelajah Demokrasi & Kewarganegaraan</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <!-- Struktur Header yang sudah ada -->
+        <div class="logo">
+            <h1>Jelajah Demokrasi</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="active">Dashboard</a></li>
+                <li><a href="pages/module.html">Modul Belajar</a></li>
+                <li><a href="pages/arena-pancasila.html">Arena Pancasila</a></li> 
+            </ul>
+        </nav>
+        <div class="user-profile">
+            <span id="userName">Siswa PPKN</span>
+            <div class="avatar"></div>
+        </div>
+    </header>
+
+    <!-- MAIN SUDAH DIBERSIHKAN & DIGANTI SESUAI INSTRUKSI -->
+    <main class="dashboard-container">
+        
+        <!-- PANEL KIRI: Progress, Badge, Notifikasi -->
+        <section class="panel left-panel">
+            <h2>📊 Kemajuan Belajarku</h2>
+            
+            <div class="progress-section">
+                <div class="progress-circle-container">
+                    <svg class="progress-ring" viewBox="0 0 120 120">
+                        <circle class="progress-ring-track" cx="60" cy="60" r="50"></circle>
+                        <circle class="progress-ring-fill" id="overallProgressRing" cx="60" cy="60" r="50"></circle>
+                    </svg>
+                    <span class="progress-label" id="progressText">0%</span>
+                </div>
+                <p class="progress-status">
+                    Modul Selesai: 
+                    <span id="modulesCompleted">0</span> / 
+                    <span id="totalModules">0</span>
+                </p>
+            </div>
+
+            <h3 class="panel-title">⭐ Lencana Saya</h3>
+            <div class="badge-display" id="badgeContainer">
+                <div class="badge-item empty">...</div>
+            </div>
+            
+            <h3 class="panel-title" style="margin-top: 25px;">🔔 Notifikasi & Tugas</h3>
+            <div class="announcement-list" id="announcementList">
+                <p style="text-align: center; font-size: 0.9em; color: #777;">
+                    Memuat tugas atau pengumuman baru...
+                </p>
+            </div>
+        </section>
+
+        <!-- PANEL TENGAH: Rekomendasi Belajar -->
+        <section class="panel center-panel">
+            <h2>📚 Rekomendasi Belajar</h2>
+            
+            <div id="contentRecommendationContainer">
+                <p style="text-align: center; padding: 50px;">
+                    Memuat rekomendasi modul dari Guru...
+                </p>
+            </div>
+        </section>
+
+        <!-- PANEL KANAN: Papan Skor & Referensi -->
+        <section class="panel right-panel">
+            <h2>🏆 Papan Skor Kelas</h2>
+            <div class="score-widget">
+                Poin Anda: <span id="userPoints">0</span>
+            </div>
+            
+            <ol class="leaderboard-list" id="leaderboardDashboard">
+                <li>Memuat Peringkat...</li>
+            </ol>
+
+            <h3 class="panel-title">🔎 Referensi Cepat</h3>
+            <ul class="quick-links">
+                <li><a href="#">Kamus Istilah PPKN</a></li>
+                <li><a href="#">Teks UUD 1945 Ringkas</a></li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- PENTING: Auth harus dimuat sebelum App -->
+    <script src="scripts/auth.js"></script> 
+    <script>
+        // Logika Pengecekan Dini untuk Guru
+        document.addEventListener('DOMContentLoaded', () => {
+            const session = window.getActiveSession();
+
+            // 1. Jika tidak ada sesi, arahkan ke login
+            if (!session) {
+                window.location.href = 'pages/login.html';
+                return;
+            }
+            
+            // 2. Jika sesi adalah GURU, segera arahkan ke admin.html
+            if (session.role === 'guru') {
+                window.location.href = 'pages/admin.html';
+                return;
+            }
+            
+            // Jika sesi adalah murid, biarkan app.js me-render dashboard
+        });
+    </script>
+    <script src="scripts/app.js"></script> 
+</body>
+</html>

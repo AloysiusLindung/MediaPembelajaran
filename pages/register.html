@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Akun Baru | Jelajah Demokrasi</title>
+    <link rel="stylesheet" href="../styles/main.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Gaya Khusus untuk Registrasi (Bisa dipindahkan ke main.css) */
+        body {
+            /* Menengahkan konten di tengah layar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--color-background);
+        }
+
+        .register-container {
+            width: 100%;
+            max-width: 450px;
+            background-color: var(--color-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .register-container h1 {
+            text-align: center;
+            color: var(--color-primary);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            box-sizing: border-box; /* Penting untuk padding dan border */
+        }
+        
+        .link-login {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="register-container">
+        <h1>Daftar Akun Murid Baru</h1>
+
+        <form id="formMuridRegister">
+            <div class="form-group">
+                <label for="registerFullname">Nama Lengkap</label>
+                <input type="text" id="registerFullname" required placeholder="Masukkan nama lengkap Anda">
+            </div>
+
+            <div class="form-group">
+                <label for="registerUsername">Nama Pengguna (Username)</label>
+                <input type="text" id="registerUsername" required placeholder="Buat username unik Anda">
+            </div>
+
+            <div class="form-group">
+                <label for="registerPassword">Kata Sandi</label>
+                <input type="password" id="registerPassword" required placeholder="Minimal 6 karakter">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+                <input type="password" id="confirmPassword" required placeholder="Ulangi kata sandi">
+            </div>
+            
+            <div class="form-group">
+                <label for="classGrade">Kelas (Tingkat SMP)</label>
+                <select id="classGrade" required>
+                    <option value="" disabled selected>Pilih Kelas</option>
+                    <option value="VII">VII (Tujuh)</option>
+                    <option value="VIII">VIII (Delapan)</option>
+                    <option value="IX">IX (Sembilan)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">
+                Daftar & Mulai Belajar
+            </button>
+        </form>
+        
+        <div class="link-login">
+            Sudah punya akun? <a href="login.html">Masuk di sini</a>
+        </div>
+
+    </main>
+    
+    <script src="../scripts/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Blok ini sekarang kosong karena auth.js sudah mengambil alih tugas listener.
+        });
+    </script>
+</body>
+</html>

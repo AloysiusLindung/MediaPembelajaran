@@ -1,0 +1,586 @@
+/* ========================================================================
+   GLOBAL STYLING & VARIABLES (CSS RESET)
+   ======================================================================== */
+:root {
+    /* Palet Warna */
+    --color-primary: #0D47A1; /* Biru Tua - Dominan */
+    --color-secondary: #FFC107; /* Kuning Cerah - Aksen/Highlight */
+    --color-accent: #4CAF50; /* Hijau - Sukses/Progress */
+    --color-text-dark: #333333;
+    --color-background: #f4f7f6;
+    --color-white: #ffffff;
+    
+    /* Tipografi */
+    --font-primary: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* PENAMBAHAN KRITIS: Transisi global untuk animasi halus */
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-background);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    /* Transisi khusus untuk link */
+    transition: color 0.3s;
+}
+
+/* ========================================================================
+   1. HEADER (Navigasi Tetap)
+   ======================================================================== */
+.main-header {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .logo h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+/* Navigasi */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.main-nav li a {
+    color: var(--color-white);
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-weight: 500;
+}
+
+.main-nav li a:hover,
+.main-nav li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Profil Pengguna */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-profile #userName {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.user-profile .avatar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+    border: 2px solid var(--color-white);
+}
+
+/* ========================================================================
+   2. KONTEN UTAMA (Dashboard Layout)
+   ======================================================================== */
+.dashboard-container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 25px;
+    max-width: 1400px;
+    margin: 25px auto;
+}
+
+/* Gaya Umum Panel */
+.panel {
+    background-color: var(--color-white);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.panel h2 {
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    border-bottom: 3px solid var(--color-secondary);
+    padding-bottom: 5px;
+    font-size: 1.6em;
+}
+
+.panel h3.panel-title {
+    color: var(--color-text-dark);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+/* ========================================================================
+   3. PANEL KIRI: Progress & Badge
+   ======================================================================== */
+.progress-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.progress-status {
+    font-size: 1.1em;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* Progress Ring CSS */
+.progress-circle-container {
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.progress-ring {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.progress-ring-track {
+    stroke-width: 10;
+    stroke: #e0e0e0;
+    fill: none;
+}
+
+.progress-ring-fill {
+    stroke-width: 10;
+    stroke: var(--color-accent);
+    fill: none;
+    stroke-dasharray: 314;
+    stroke-dashoffset: 314;
+    transition: stroke-dashoffset 0.7s ease-in-out;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.progress-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* Badge Display */
+.badge-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.badge-item {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.badge-item.empty {
+    background-color: #f0f0f0;
+    color: #aaa;
+    border: 1px dashed #ccc;
+}
+
+/* ========================================================================
+   4. PANEL TENGAH: Rekomendasi & Notifikasi
+   ======================================================================== */
+.card {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.module-recommendation {
+    background-color: #e3f2fd;
+    border-left: 5px solid var(--color-primary);
+}
+
+.announcement-card {
+    background-color: #fffde7;
+    border-left: 5px solid var(--color-secondary);
+}
+
+.card h3 {
+    font-size: 1.3em;
+    margin-bottom: 5px;
+    color: var(--color-primary);
+}
+
+.card h4 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* Tombol Aksi */
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-top: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #388e3c;
+}
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    color: var(--color-text-dark);
+    border: 1px solid #ccc;
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0;
+}
+
+/* ========================================================================
+   Gaya Tambahan untuk Modul, Kuis, & Admin
+   ======================================================================== */
+
+/* Gaya untuk pesan error dinamis */
+.cms-error-message, .alert-box {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 8px;
+    background-color: #ffcdd2;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Gaya untuk item di Form Admin yang sedang diedit */
+.cms-admin-item-preview {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    background-color: #fcfcfc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Gaya untuk tombol Aksen yang Kuat */
+.btn-accent {
+    background-color: var(--color-secondary);
+    color: var(--color-text-dark);
+    border: none;
+}
+
+.btn-accent:hover {
+    background-color: #ffb300;
+    color: var(--color-white);
+}
+
+/* ========================================================================
+   5. PANEL KANAN: Papan Skor & Referensi
+   ======================================================================== */
+.score-widget {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.score-widget #userPoints {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--color-secondary);
+    display: block;
+}
+
+/* Leaderboard */
+.leaderboard-list {
+    list-style: none;
+    padding: 0;
+}
+
+.leaderboard-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    font-weight: 500;
+}
+
+.leaderboard-list li:first-child {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* Quick Links */
+.quick-links {
+    list-style: none;
+    padding: 0;
+}
+
+.quick-links li a {
+    display: block;
+    padding: 8px 0;
+    border-bottom: 1px dotted #ccc;
+    transition: color 0.2s;
+}
+
+.quick-links li a:hover {
+    color: var(--color-secondary);
+}
+
+/* ========================================================================
+   6. MEDIA QUERIES (Responsivitas)
+   ======================================================================== */
+/* Untuk tablet dan layar yang lebih kecil */
+@media (max-width: 1024px) {
+    .dashboard-container {
+        grid-template-columns: 1.5fr 1fr;
+    }
+    
+    .left-panel {
+        grid-row: 2;
+        grid-column: 1 / 3;
+    }
+    
+    .center-panel {
+        order: 1;
+    }
+    
+    .right-panel {
+        order: 2;
+    }
+    
+    .main-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-nav ul {
+        gap: 10px;
+        padding-top: 5px;
+    }
+}
+
+/* Untuk ponsel */
+@media (max-width: 600px) {
+    .dashboard-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .main-header {
+        padding: 10px;
+    }
+
+    .user-profile {
+        flex-shrink: 1;
+    }
+
+    .user-profile #userName {
+        display: none;
+    }
+
+    .main-nav ul {
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .panel {
+        padding: 15px;
+    }
+}
+
+/* ========================================================================
+   7. ARENA PANCASILA LAYOUT & COMPONENTS
+   ======================================================================== */
+.arena-page {
+    display: flex;
+    gap: 25px;
+    max-width: 1400px;
+    margin: 25px auto;
+    padding: 0 20px;
+}
+
+.arena-sidebar {
+    flex: 0 0 300px;
+    background-color: var(--color-white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    height: fit-content;
+    position: sticky;
+    top: 90px;
+}
+
+.arena-content {
+    flex-grow: 1;
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Gaya Tab Navigasi */
+.arena-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+.tab-link {
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.tab-link:hover, .tab-link.active {
+    color: var(--color-primary);
+    border-bottom: 3px solid var(--color-secondary);
+}
+
+.tab-content {
+    display: none;
+    padding-top: 20px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Gaya untuk Forum Post */
+.forum-post {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+}
+
+.forum-post h4 {
+    color: var(--color-primary);
+    margin-bottom: 5px;
+}
+
+.post-meta {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+/* ========================================================================
+   8. GAYA AKTIVITAS DRAG & DROP
+   ======================================================================== */
+
+.drag-item-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+    margin-top: 30px;
+    min-height: 100px;
+}
+
+.drag-item {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: grab;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.drag-item.dragging {
+    opacity: 0.5;
+}
+
+.drop-zone-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.drop-zone {
+    flex: 1;
+    min-width: 200px;
+    background-color: #f0f8ff;
+    border: 2px dashed var(--color-primary);
+    border-radius: 8px;
+    padding: 15px;
+    min-height: 250px;
+    text-align: center;
+}
+
+.drop-zone.hovered {
+    background-color: #e0f7fa;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+/* Gaya untuk hasil visual saat klasifikasi selesai */
+.drag-item[style*="background-color: rgb(76, 175, 80)"] {
+    animation: pulseCorrect 0.5s 3;
+}
+
+@keyframes pulseCorrect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}

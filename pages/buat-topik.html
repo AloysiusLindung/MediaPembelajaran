@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buat Topik Baru | Arena Pancasila</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .discussion-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 30px;
+            background-color: var(--color-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--color-secondary);
+        }
+
+        .topic-header h2 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .topic-header p {
+            color: var(--color-text-light);
+            font-style: italic;
+        }
+
+        #newTopicForm label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--color-text-dark);
+        }
+
+        #newTopicForm input,
+        #newTopicForm select,
+        #newTopicForm textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        #newTopicForm input:focus,
+        #newTopicForm select:focus,
+        #newTopicForm textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        #newTopicForm textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <h1>Jelajah Demokrasi</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="module.html">Modul Belajar</a></li>
+                <li><a href="arena-pancasila.html" class="active">Arena Pancasila</a></li> 
+            </ul>
+        </nav>
+        <div class="user-profile">
+            <span id="userName">GURU PPKN</span>
+            <div class="avatar" style="background-color: var(--color-accent);"></div>
+        </div>
+    </header>
+
+    <main class="discussion-container">
+        <div class="topic-header">
+            <h2>Buat Topik Diskusi Baru</h2>
+            <p>Formulir ini hanya dapat diakses oleh Guru/Moderator.</p>
+        </div>
+        
+        <form id="newTopicForm">
+            <label for="topicTitle">Judul Topik:</label>
+            <input type="text" id="topicTitle" required placeholder="Masukkan judul topik diskusi yang menarik">
+            
+            <label for="topicSila">Sila Pancasila Terkait:</label>
+            <select id="topicSila" required>
+                <option value="">-- Pilih Sila Pancasila --</option>
+                <option value="Sila1">Sila 1: Ketuhanan Yang Maha Esa</option>
+                <option value="Sila2">Sila 2: Kemanusiaan Yang Adil dan Beradab</option>
+                <option value="Sila3">Sila 3: Persatuan Indonesia</option>
+                <option value="Sila4">Sila 4: Kerakyatan Yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan</option>
+                <option value="Sila5">Sila 5: Keadilan Sosial bagi Seluruh Rakyat Indonesia</option>
+            </select>
+
+            <label for="topicDescription">Deskripsi Topik (Panduan Diskusi):</label>
+            <textarea id="topicDescription" required placeholder="Tuliskan deskripsi atau panduan diskusi untuk siswa..."></textarea>
+
+            <button type="submit" class="btn btn-primary">Publikasikan Topik</button>
+        </form>
+    </main>
+    
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/app.js"></script>
+    <script src="../scripts/arena.js"></script>
+</body>
+</html>

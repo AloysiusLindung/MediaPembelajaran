@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Memuat Modul...</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Khusus untuk Tata Letak Modul (Disalin dari main.css/modul-norma.html) */
+        .module-page {
+            display: flex;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+
+        .module-sidebar {
+            flex: 0 0 300px; 
+            background-color: var(--color-white);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            height: fit-content; 
+            position: sticky;
+            top: 90px; 
+        }
+
+        .module-content {
+            flex-grow: 1; 
+            background-color: var(--color-white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .step-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .step-list li:last-child {
+            border-bottom: none;
+        }
+
+        .step-list li a {
+            display: flex;
+            align-items: center;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .step-indicator {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #ccc;
+            color: white;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.8em;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .step-list li.completed .step-indicator {
+            background-color: var(--color-accent); 
+        }
+        
+        .step-list li.current a {
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .step-list li.current .step-indicator {
+            background-color: var(--color-primary);
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .content-section h3 {
+            font-size: 1.8em;
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-secondary);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .video-wrapper {
+            aspect-ratio: 16 / 9; 
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+        
+        /* Navigasi Modul (Lanjut/Kembali) */
+        .module-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Responsivitas */
+        @media (max-width: 900px) {
+            .module-page {
+                flex-direction: column;
+            }
+            .module-sidebar {
+                flex: auto;
+                position: static;
+            }
+        }
+        
+        /* Gaya untuk konten image/infografis */
+        .infographic-box img {
+            width: 80%; 
+            height: auto; 
+            display: block; 
+            margin: 15px auto;
+            border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin: 10px 0 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--color-accent);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <h1>Jelajah Demokrasi</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="module.html" class="active">Modul Belajar</a></li>
+                <li><a href="arena-pancasila.html">Arena Pancasila</a></li> 
+            </ul>
+        </nav>
+        <div class="user-profile">
+            <span id="userName">Siswa PPKN</span>
+            <div class="avatar"></div>
+        </div>
+    </header>
+
+    <div class="module-page">
+        
+        <aside class="module-sidebar">
+            <h2 id="moduleTitle">Memuat Modul...</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" id="moduleProgressBar" style="width: 0%"></div>
+            </div>
+            <p>Status: <span id="moduleProgress">0% Selesai</span></p>
+
+            <ul class="step-list" id="moduleStepsList">
+                <li><a href="#"><span class="step-indicator">...</span> Silakan Tunggu</a></li>
+            </ul>
+            
+            <a href="../index.html" class="btn btn-secondary" style="width: 100%; margin-top: 20px;">
+                ← Kembali ke Dashboard
+            </a>
+        </aside>
+
+        <article class="module-content">
+            <h1 id="contentHeader">Memuat Materi...</h1>
+            
+            <div id="dynamicContentContainer">
+                <p style="text-align: center; padding: 50px;">
+                    <img src="https://placehold.co/50x50/ccc/white?text=⏳" alt="Loading" style="display: block; margin: 0 auto 10px;">
+                    Konten modul sedang dimuat atau belum diinput oleh Guru/Administrator.
+                </p>
+            </div>
+            
+            <div class="module-nav" id="moduleNavControls">
+                <!-- Tombol navigasi akan diisi secara dinamis oleh JavaScript -->
+            </div>
+        </article>
+
+    </div>
+    
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/app.js"></script>
+    <script src="../scripts/module-progress.js"></script>
+    <script src="../scripts/module.js"></script>
+</body>
+</html>

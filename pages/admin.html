@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Guru | Admin CMS</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Khusus untuk Tata Letak Admin */
+        .admin-page {
+            display: flex;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 25px auto;
+            padding: 0 20px;
+        }
+
+        .admin-sidebar {
+            flex: 0 0 250px; 
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+
+        .admin-content {
+            flex-grow: 1; 
+            background-color: var(--color-white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .cms-tab-nav {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #eee;
+        }
+
+        .cms-tab-link {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #777;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .cms-tab-link.active {
+            color: var(--color-primary);
+            border-bottom: 3px solid var(--color-secondary);
+        }
+        
+        .cms-tab-content {
+            display: none;
+        }
+        
+        .cms-tab-content.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input[type="text"], 
+        .form-group textarea,
+        .form-group select,
+        .form-group input[type="url"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo"><h1>Dashboard Guru</h1></div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#" onclick="logout()" style="color: var(--color-secondary); font-weight: 700;">KELUAR (Logout)</a></li>
+            </ul>
+        </nav>
+        <div class="user-profile">
+            <span id="userName">GURU PPKN</span>
+            <div class="avatar" style="background-color: var(--color-accent);"></div>
+        </div>
+    </header>
+
+    <div class="admin-page">
+        
+        <aside class="admin-sidebar">
+            <h2 style="color: var(--color-secondary); border-bottom: 2px solid var(--color-secondary); padding-bottom: 10px; margin-bottom: 20px;">
+                Panel Administrasi
+            </h2>
+            <p>Selamat datang, <span id="guruName">Guru PPKN</span>.</p>
+            <p style="font-size: 0.9em; margin-top: 5px; opacity: 0.8;">Kelola konten dan progres siswa di sini.</p>
+            
+            <button onclick="openCMSTab(event, 'dataSiswa')" class="cms-tab-link active" style="width: 100%; text-align: left; color: white; border-bottom: none; margin-top: 20px;">
+                1. Data & Progres Siswa
+            </button>
+            <button onclick="openCMSTab(event, 'kelolaMateri')" class="cms-tab-link" style="width: 100%; text-align: left; color: white; border-bottom: none;">
+                2. Kelola Materi Modul
+            </button>
+            <button onclick="openCMSTab(event, 'kelolaKuis')" class="cms-tab-link" style="width: 100%; text-align: left; color: white; border-bottom: none;">
+                3. Kelola Soal Kuis
+            </button>
+            
+            <button onclick="logout()" class="btn btn-secondary" style="width: 100%; margin-top: 30px; background-color: #f44336; color: white; border: none;">
+                Keluar / Logout
+            </button>
+        </aside>
+
+        <article class="admin-content">
+            
+            <div class="cms-tab-nav">
+                <button class="cms-tab-link active" onclick="openCMSTab(event, 'dataSiswa')">Data Siswa</button>
+                <button class="cms-tab-link" onclick="openCMSTab(event, 'kelolaMateri')">Kelola Materi</button>
+                <button class="cms-tab-link" onclick="openCMSTab(event, 'kelolaKuis')">Kelola Kuis</button>
+            </div>
+
+            <!-- TAB DATA SISWA -->
+            <div id="dataSiswa" class="cms-tab-content active">
+                <h2>Kelola Data & Progres Siswa</h2>
+                
+                <div style="border: 2px solid #ff9800; padding: 15px; border-radius: 8px; margin-bottom: 20px; background-color: #fff3e0;">
+                    <h3 style="color: #ff9800; margin-bottom: 10px;">⚠️ Zona Resiko Tinggi</h3>
+                    <button onclick="resetAllStudentProgress()" class="btn btn-primary" style="background-color: #f44336; border-color: #d32f2f;">
+                        Reset Semua Poin & Progres Siswa
+                    </button>
+                    <button onclick="resetCMSContent()" class="btn btn-secondary" style="margin-left: 10px;">
+                        Reset Konten Modul & Soal (CMS)
+                    </button>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #777;">Tindakan ini tidak bisa dibatalkan.</p>
+                </div>
+
+                <h3>Daftar Murid Terdaftar (<span id="totalStudentsCount">0</span> Siswa)</h3>
+                <div style="max-height: 400px; overflow-y: auto;">
+                    <table id="studentListTable">
+                        <thead>
+                            <tr>
+                                <th>Nama Pengguna</th>
+                                <th>Kelas</th>
+                                <th>Poin Total</th>
+                                <th>Modul Selesai</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="5">Memuat data siswa...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB KELOLA MATERI -->
+            <div id="kelolaMateri" class="cms-tab-content">
+                <h2>Kelola Konten Modul</h2>
+                <p>Tambah/edit materi di modul yang dipilih.</p>
+                
+                <!-- INPUT BARU: ID MODUL -->
+                <div class="form-group">
+                    <label for="moduleIdInput">ID Modul (Baru atau Eksisting) *Contoh: norma_hukum*</label>
+                    <input type="text" id="moduleIdInput" required 
+                           placeholder="Masukkan ID unik Modul (huruf kecil, tanpa spasi)" 
+                           onchange="window.renderModuleManagement(this.value)">
+                </div>
+
+                <form id="formKelolaMateri">
+                    <div class="form-group">
+                        <label for="moduleTitle">Judul Modul</label>
+                        <input type="text" id="moduleTitle" required placeholder="Contoh: Modul 1: Norma dan Keadilan">
+                    </div>
+                    
+                    <h3>Tambahkan Konten Baru</h3>
+                    
+                    <div class="form-group">
+                        <label for="contentItemTitle">Judul Sub-Bagian (Untuk Sidebar):</label>
+                        <input type="text" id="contentItemTitle" required placeholder="Contoh: Peta Konsep Utama atau Kuis Akhir">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contentType">Jenis Konten:</label>
+                        <select id="contentType" onchange="toggleMediaInput(this.value)">
+                            <option value="text" selected>1. Teks Penjelasan</option>
+                            <option value="video">2. Link Video YouTube</option>
+                            <option value="image">3. Link Gambar (URL/Infografis)</option>
+                            <option value="activity">4. Link Aktivitas (Contoh: Drag & Drop)</option>
+                            <option value="quiz">5. Link Kuis Akhir</option>
+                        </select>
+                    </div>
+
+                    <div id="dynamicContentInput">
+                        <div class="form-group">
+                            <label for="contentInput">Isi Konten Teks:</label>
+                            <textarea id="contentInput" rows="5" placeholder="Ketik teks penjelasan di sini..." required></textarea>
+                        </div>
+                    </div>
+                    
+                    <button type="button" onclick="addModuleContent()" class="btn btn-primary">
+                        Tambah Konten ke Modul
+                    </button>
+                </form>
+
+                <h3 style="margin-top: 30px;">Pratinjau & Hapus Konten Aktif</h3>
+                <div id="activeContentPreview">
+                    <p>Memuat daftar konten...</p>
+                </div>
+            </div>
+
+            <!-- TAB KELOLA KUIS -->
+            <div id="kelolaKuis" class="cms-tab-content">
+                <h2>Kelola Soal Kuis Akhir</h2>
+                
+                <!-- INPUT BARU: KEY KUIS -->
+                <div class="form-group">
+                    <label for="quizKeyInput">KEY Kuis (Baru atau Eksisting) *Contoh: kuis_bab1_final*</label>
+                    <input type="text" id="quizKeyInput" required 
+                           placeholder="Masukkan KEY unik Kuis (huruf kecil, tanpa spasi)"
+                           onchange="window.renderQuizManagement(this.value)">
+                </div>
+
+                <form id="formKelolaKuis">
+                    <div class="form-group">
+                        <label for="quizQuestion">Teks Pertanyaan:</label>
+                        <textarea id="quizQuestion" rows="3" required placeholder="Tulis teks pertanyaan di sini..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pilihan Jawaban (A, B, C, dst.)</label>
+                        <div id="optionsContainer">
+                            <input type="text" class="quiz-option" placeholder="Pilihan A" required>
+                            <input type="text" class="quiz-option" placeholder="Pilihan B" required>
+                            <input type="text" class="quiz-option" placeholder="Pilihan C" required>
+                            <input type="text" class="quiz-option" placeholder="Pilihan D (Opsional)">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="correctAnswer">Jawaban Benar (Pilih Hurufnya, misal: A)</label>
+                        <input type="text" id="correctAnswer" required maxlength="1" style="width: 80px; text-transform: uppercase;" placeholder="A/B/C/D">
+                    </div>
+
+                    <button type="button" onclick="addQuizQuestion()" class="btn btn-primary">
+                        Tambah Soal Baru
+                    </button>
+                </form>
+
+                <h3 style="margin-top: 30px;">Daftar Soal Kuis Aktif (<span id="totalQuizQuestions">0</span> Soal)</h3>
+                <table id="quizQuestionTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Pertanyaan</th>
+                            <th>Jawaban Benar</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="4">Memuat daftar soal...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </article>
+
+    </div>
+    
+    <!-- Script eksternal -->
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/app.js"></script>
+    <script src="../scripts/admin-cms.js"></script>
+
+    <!-- Script logika halaman admin -->
+    <script>
+        /**
+         * FUNGSI 1: Mengubah Input Form Konten Modul (PENTING!)
+         * Memastikan input Key Kuis/Aktivitas menggunakan input teks biasa, bukan dropdown.
+         */
+        function toggleMediaInput(type) {
+            const dynamicContainer = document.getElementById('dynamicContentInput');
+            let html = '';
+            
+            if (type === 'text' || type === 'video' || type === 'image') {
+                // Untuk Teks/Media biasa
+                let placeholder = 'Ketik teks penjelasan di sini...';
+                let rows = 5;
+
+                if (type === 'video') {
+                    placeholder = 'Paste URL Video YouTube di sini...';
+                    rows = 2;
+                } else if (type === 'image') {
+                    placeholder = 'Paste URL Gambar/Infografis publik di sini';
+                    rows = 2;
+                }
+
+                html = `
+                    <div class="form-group">
+                        <label for="contentInput">Isi Konten / URL Link:</label>
+                        <textarea id="contentInput" rows="${rows}" placeholder="${placeholder}" required></textarea>
+                    </div>
+                `;
+            } else if (type === 'activity' || type === 'quiz') {
+                // LOGIKA BARU: Input KEY Teks untuk Aktivitas/Kuis (Bukan Dropdown)
+                html = `
+                    <div class="form-group">
+                        <label for="contentKey">Masukkan KEY ${type.toUpperCase()} (Harus Unik):</label>
+                        <input type="text" id="contentKey" required placeholder="Contoh: norma_quiz_final atau drag_norma" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                    </div>
+                `;
+            }
+            dynamicContainer.innerHTML = html;
+        }
+
+        /**
+         * FUNGSI 2: Mengelola Navigasi Tab CMS
+         */
+        function openCMSTab(evt, tabId) { 
+            // 1. Logika visual tab nav
+            const contents = document.querySelectorAll('.cms-tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            const links = document.querySelectorAll('.cms-tab-link');
+            links.forEach(link => link.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add('active');
+            }
+            
+            // 2. Panggil fungsi render CMS yang relevan
+            if (tabId === 'dataSiswa' && window.renderStudentManagement) {
+                window.renderStudentManagement();
+            } else if (tabId === 'kelolaMateri' && window.renderModuleManagement) {
+                // Ambil nilai dari input field baru, atau string kosong jika belum diisi
+                const currentId = document.getElementById('moduleIdInput')?.value || '';
+                window.renderModuleManagement(currentId);
+                toggleMediaInput('text'); // Reset form input konten ke default
+            } else if (tabId === 'kelolaKuis' && window.renderQuizManagement) {
+                // Ambil nilai dari input field baru, atau string kosong
+                const currentKey = document.getElementById('quizKeyInput')?.value || '';
+                window.renderQuizManagement(currentKey);
+                // Tambahkan reset form kuis jika ada form dengan id 'formKelolaKuis'
+                const quizForm = document.getElementById('formKelolaKuis');
+                if (quizForm) quizForm.reset(); 
+            }
+        }
+
+        // Inisialisasi
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check Autentikasi
+            if (typeof window.checkAuthentication === 'function') {
+                const session = window.checkAuthentication('guru');
+                if (session) {
+                    document.getElementById('userName').textContent = session.username;
+                    document.getElementById('guruName').textContent = session.username;
+                }
+            }
+            
+            // Render default tab
+            openCMSTab(null, 'dataSiswa');
+            
+            // Inisialisasi tampilan input konten default
+            toggleMediaInput('text');
+        });
+    </script>
+</body>
+</html>

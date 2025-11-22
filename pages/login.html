@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk Akun | Jelajah Demokrasi</title>
+    <link rel="stylesheet" href="../styles/main.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Gaya Khusus untuk Login (Bisa dipindahkan ke main.css) */
+        body {
+            /* Menengahkan konten di tengah layar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--color-background);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: var(--color-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-container h1 {
+            text-align: center;
+            color: var(--color-primary);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        .tab-nav {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tab-link {
+            flex: 1;
+            background-color: transparent;
+            border: none;
+            padding: 10px 0;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: #777;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+        .tab-link:hover, .tab-link.active {
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+        
+        .link-register {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="login-container">
+        <h1>Masuk ke Jelajah Demokrasi</h1>
+
+        <div class="tab-nav">
+            <button class="tab-link active" onclick="openTab(event, 'muridLogin')">Masuk Murid</button>
+            <button class="tab-link" onclick="openTab(event, 'guruLogin')">Masuk Guru</button>
+        </div>
+
+        <div id="muridLogin" class="tab-content active">
+            <form id="formMuridLogin">
+                <div class="form-group">
+                    <label for="muridUsername">Nama Pengguna (Username)</label>
+                    <input type="text" id="muridUsername" required placeholder="Masukkan username Anda">
+                </div>
+
+                <div class="form-group">
+                    <label for="muridPassword">Kata Sandi</label>
+                    <input type="password" id="muridPassword" required placeholder="Masukkan kata sandi">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">
+                    Masuk Akun Murid
+                </button>
+            </form>
+        </div>
+
+        <div id="guruLogin" class="tab-content">
+            <form id="formGuruLogin">
+                <div class="form-group">
+                    <label for="guruPassword">Kata Sandi Admin/Guru</label>
+                    <input type="password" id="guruPassword" required placeholder="Masukkan kata sandi Guru">
+                </div>
+
+                <button type="submit" class="btn btn-accent" style="width: 100%; margin-top: 15px;">
+                    Masuk Dashboard Guru
+                </button>
+            </form>
+        </div>
+        
+        <div class="link-register">
+            Belum punya akun murid? <a href="register.html">Daftar di sini</a>
+        </div>
+
+    </main>
+    
+    <script src="../scripts/auth.js"></script>
+    <script>
+        // Fungsionalitas sederhana untuk mengelola Tab Navigasi 
+        function openTab(evt, tabId) { 
+            // Sembunyikan semua tab-content
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Hilangkan status 'active' dari semua tab-link
+            const links = document.querySelectorAll('.tab-link');
+            links.forEach(link => link.classList.remove('active'));
+
+            // Tampilkan konten tab yang dipilih
+            document.getElementById(tabId).classList.add('active');
+            
+            // Set tombol tab yang dipilih menjadi aktif
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add('active');
+            }
+        }
+
+        // Inisialisasi: Pastikan tab murid terbuka saat DOM Load
+        document.addEventListener('DOMContentLoaded', () => {
+            openTab(null, 'muridLogin');
+            // Catatan: Event Listener untuk form sudah ada di auth.js
+        });
+    </script>
+</body>
+</html>

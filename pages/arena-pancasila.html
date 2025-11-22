@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arena Pancasila | Jelajah Demokrasi</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Khusus Arena (Disarankan dipindahkan ke main.css) */
+        .arena-page {
+            display: flex;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 25px auto;
+            padding: 0 20px;
+        }
+
+        .arena-sidebar {
+            flex: 0 0 300px;
+            background-color: var(--color-white);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            height: fit-content; 
+            position: sticky;
+            top: 90px;
+        }
+
+        .arena-content {
+            flex: 1;
+        }
+
+        .tab-nav {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #eee;
+        }
+
+        .tab-link {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1em;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-link.active {
+            color: var(--color-primary);
+            border-bottom: 3px solid var(--color-primary);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: var(--color-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .forum-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .forum-post {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+
+        .forum-post h4 {
+            color: var(--color-primary);
+        }
+        
+        .leaderboard-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .leaderboard-list li {
+            padding: 10px 0;
+            border-bottom: 1px dotted #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .leaderboard-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .leaderboard-score {
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+        
+        .leaderboard-time {
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <h1>Jelajah Demokrasi</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="module.html">Modul Belajar</a></li>
+                <li><a href="arena-pancasila.html" class="active">Arena Pancasila</a></li> 
+            </ul>
+        </nav>
+        <div class="user-profile">
+            <span id="userName">Siswa PPKN</span>
+            <div class="avatar"></div>
+        </div>
+    </header>
+
+    <main class="arena-page">
+        
+        <aside class="arena-sidebar">
+            <h2>🏆 Poin Arena Anda</h2>
+            <div class="score-widget" style="background-color: var(--color-secondary); color: var(--color-text-dark);">
+                <span id="arenaPoints">0</span> Poin
+            </div>
+            
+            <h3 style="margin-top: 25px;">Filter Forum</h3>
+            <div class="filter-buttons">
+                <button class="btn btn-secondary btn-small" onclick="filterTopic('semua')">Semua Sila</button>
+                <button class="btn btn-secondary btn-small" onclick="filterTopic('sila4')">Sila 4</button>
+                <button class="btn btn-secondary btn-small" onclick="filterTopic('sila5')">Sila 5</button>
+            </div>
+        </aside>
+
+        <article class="arena-content">
+            <h2>Arena Pancasila</h2>
+            <p>Ruang interaktif untuk menguji dan menerapkan nilai-nilai Pancasila dalam konteks kehidupan sehari-hari.</p>
+
+            <div class="tab-nav">
+                <button class="tab-link active" data-tab-id="forum" onclick="openTab(event, 'forum')">Forum Diskusi Terbimbing</button>
+                <button class="tab-link" onclick="openTab(event, 'dilemma')">❓ Pojok Dilema Etika</button>
+                <button class="tab-link" onclick="openTab(event, 'quick-challenge')">🚀 Tantangan Cepat</button>
+                <button class="tab-link" onclick="openTab(event, 'leaderboard')">🏆 Papan Peringkat</button>
+            </div>
+
+            <div id="forum" class="tab-content active">
+                <div class="forum-header">
+                    <div class="filter-actions">
+                    </div>
+                    <button id="btnMulaiTopik" class="btn btn-accent" style="display: none;">+ Mulai Topik Baru</button> 
+                </div>
+
+                <div class="forum-list" id="forumTopicList">
+                    <!-- Konten akan diisi secara dinamis oleh arena.js -->
+                </div>
+            </div>
+
+            <div id="dilemma" class="tab-content">
+                <h3>Dilema Etika Hari Ini: Siapa yang Bertanggung Jawab?</h3>
+                
+                <div class="forum-post" id="dilemmaPostContainer">
+                    <p style="text-align: center;">Memuat Dilema dan Status Voting...</p>
+                </div>
+
+                <script>
+                    function castVote(action) {
+                        // Memanggil fungsi dari arena.js
+                        window.castVote(action); 
+                    }
+                </script>
+            </div>
+
+            <div id="quick-challenge" class="tab-content">
+                <h3>Tantangan Cepat</h3>
+                <div class="forum-post">
+                    <h4>Tantangan: Uji Pemahaman Cepat</h4>
+                    <p>Uji pemahamanmu dalam beberapa pertanyaan cepat. Kecepatan dan akurasi menentukan poinmu! (Hanya satu kali kesempatan).</p>
+                    
+                    <button id="btnStartChallenge" class="btn btn-accent btn-large" onclick="checkChallengeStatus()">
+                        Mulai Tantangan Sekarang!
+                    </button>
+                    
+                    <div id="challengeStatus" style="margin-top: 15px;">
+                        <p style="font-weight: 600;">Status Anda: <span id="userChallengeStatus">Memuat...</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="leaderboard" class="tab-content">
+                <h3 style="margin-bottom: 15px;">Papan Peringkat Tantangan Cepat (Top 10)</h3>
+                <ol class="leaderboard-list" id="challengeLeaderboardList">
+                    <li>Memuat data peringkat...</li>
+                </ol>
+            </div>
+        </article>
+
+    </main>
+    
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/app.js"></script>
+    <script src="../scripts/arena.js"></script> 
+</body>
+</html>
