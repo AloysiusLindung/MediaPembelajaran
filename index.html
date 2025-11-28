@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Media Pembelajaran Digital Pendidikan Pancasila SMP & SMA">
+    <meta name="author" content="Guru & Developer">
+    <title>Pancasila Digital - Media Pembelajaran Interaktif</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white shadow-sm" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <i class="bi bi-shield-shaded text-primary fs-3"></i>
+                <div class="d-flex flex-column">
+                    <span class="fw-bold font-heading text-dark">Pancasila Digital</span>
+                    <small class="text-muted fs-7" style="font-size: 0.75rem;">Media Pembelajaran Interaktif</small>
+                </div>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#hero">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#daftar-materi">Materi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#referensi-hukum">Pasal & UUD</a>
+                    </li>
+                    
+                    <li class="nav-item d-none d-lg-block">
+                        <div class="vr h-100 mx-2"></div>
+                    </li>
+
+                    <li class="nav-item">
+                        <button class="btn btn-outline-secondary rounded-circle" data-bs-toggle="modal" data-bs-target="#settingsModal" aria-label="Pengaturan Tampilan">
+                            <i class="bi bi-gear-fill"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero" class="hero-section d-flex align-items-center position-relative overflow-hidden">
+        <div class="pattern-overlay"></div>
+
+        <div class="container position-relative z-2">
+            <div class="row align-items-center min-vh-75 pt-5 mt-4">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <span class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill fw-bold">
+                        <i class="bi bi-mortarboard-fill me-1"></i> Edisi Kurikulum Merdeka
+                    </span>
+                    <h1 class="display-4 fw-bold font-heading mb-3 text-dark">
+                        Belajar Pancasila <br>
+                        <span class="text-primary">Jadi Lebih Seru!</span>
+                    </h1>
+                    <p class="lead text-secondary mb-4">
+                        Pahami hak, kewajiban, dan hukum di Indonesia dengan studi kasus interaktif dan materi yang mudah dipahami.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#daftar-materi" class="btn btn-primary btn-lg rounded-pill px-4 shadow-sm hover-scale">
+                            Mulai Belajar <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                        <button class="btn btn-outline-primary btn-lg rounded-pill px-4 hover-scale" onclick="document.getElementById('search-pasal').focus()">
+                            <i class="bi bi-search me-2"></i> Cari Pasal
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+    <div class="hero-box-rounded floating-anim">
+        <img src="assets/img/hero-illustration.png" alt="Siswa belajar kewarganegaraan" class="img-fluid hero-img">
+    </div>
+</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-white py-4 shadow-sm position-relative z-3" style="margin-top: -30px; border-radius: 20px 20px 0 0;">
+        <div class="container">
+            <div class="row text-center g-4">
+                <div class="col-md-4 d-flex align-items-center justify-content-center gap-3">
+                    <div class="icon-box bg-light text-primary rounded-circle p-3">
+                        <i class="bi bi-book fs-4"></i>
+                    </div>
+                    <div class="text-start">
+                        <h6 class="fw-bold mb-0">Materi Lengkap</h6>
+                        <small class="text-muted">Sesuai Kurikulum</small>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-center justify-content-center gap-3">
+                    <div class="icon-box bg-light text-warning rounded-circle p-3">
+                        <i class="bi bi-puzzle fs-4"></i>
+                    </div>
+                    <div class="text-start">
+                        <h6 class="fw-bold mb-0">Studi Kasus</h6>
+                        <small class="text-muted">Melatih Analisis</small>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-center justify-content-center gap-3">
+                    <div class="icon-box bg-light text-success rounded-circle p-3">
+                        <i class="bi bi-trophy fs-4"></i>
+                    </div>
+                    <div class="text-start">
+                        <h6 class="fw-bold mb-0">Kuis & Sertifikat</h6>
+                        <small class="text-muted">Download Nilai</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="py-5 bg-light">
+        
+        <section id="daftar-materi" class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold font-heading">Peta Materi Pembelajaran</h2>
+                <p class="text-muted">Pilih bab untuk memulai petualangan belajarmu</p>
+                <div class="divider mx-auto bg-primary rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div id="materi-container" class="row g-4">
+                
+                <div class="col-12 text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3 text-muted">Memuat Data Materi...</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="referensi-hukum" class="container py-5">
+            <div class="card border-0 shadow-lg overflow-hidden rounded-4 bg-dark text-white position-relative">
+                <div class="position-absolute top-0 end-0 p-5 opacity-10">
+                    <i class="bi bi-bank2" style="font-size: 15rem;"></i>
+                </div>
+
+                <div class="card-body p-5 position-relative z-1">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h2 class="fw-bold font-heading text-warning mb-3">Cari Pasal Cepat</h2>
+                            <p class="text-light opacity-75 mb-4">
+                                Tidak perlu buka buku tebal. Ketik kata kunci seperti "Agama", "Pendidikan", atau "HAM" untuk menemukan landasan hukumnya.
+                            </p>
+                            
+                            <div class="input-group input-group-lg bg-white rounded-pill p-1">
+                                <span class="input-group-text border-0 bg-transparent ps-4">
+                                    <i class="bi bi-search text-secondary"></i>
+                                </span>
+                                <input type="text" id="search-pasal" class="form-control border-0 shadow-none" placeholder="Ketik topik (misal: HAM)...">
+                                <button class="btn btn-primary rounded-pill px-4" type="button" id="btn-cari">Cari</button>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mt-4 mt-lg-0">
+                            <div id="hasil-pencarian" class="bg-white bg-opacity-10 backdrop-blur rounded-3 p-3 text-white" style="min-height: 200px; max-height: 300px; overflow-y: auto;">
+                                <div class="text-center py-5 text-white-50">
+                                    <i class="bi bi-arrow-left-circle me-2"></i>
+                                    Hasil pencarian akan muncul di sini
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white pt-5 pb-3 border-top">
+        <div class="container">
+            <div class="row g-4 justify-content-between">
+                <div class="col-md-4">
+                    <h5 class="fw-bold text-primary mb-3">Pancasila Digital</h5>
+                    <p class="text-secondary small">
+                        Media pembelajaran berbasis web statis untuk Pendidikan Pancasila. 
+                        Dibuat untuk memudahkan Guru dan Siswa dalam KBM.
+                    </p>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-bold mb-3">Menu</h6>
+                    <ul class="list-unstyled small text-secondary">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted hover-primary">Beranda</a></li>
+                        <li class="mb-2"><a href="#daftar-materi" class="text-decoration-none text-muted hover-primary">Materi</a></li>
+                        <li class="mb-2"><a href="#referensi-hukum" class="text-decoration-none text-muted hover-primary">Pasal</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <h6 class="fw-bold mb-3">Informasi Sekolah</h6>
+                    <p class="small text-muted mb-1">Guru: Yohana Impian Tamba</p>
+                    <p class="small text-muted">SMP & SMA (Kurikulum Merdeka)</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center small text-secondary">
+                &copy; 2025 Pancasila Digital Project. Open Source Education.
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="settingsModalLabel">Pengaturan Tampilan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-4">
+                    
+                    <div class="mb-4">
+                        <label class="d-block fw-bold mb-2 text-secondary small text-uppercase ls-1">Tema Aplikasi</label>
+                        <div class="d-flex gap-2 bg-light p-2 rounded-3">
+                            <button class="btn btn-white shadow-sm flex-fill active" id="btn-theme-light">
+                                <i class="bi bi-sun-fill text-warning me-2"></i> Terang
+                            </button>
+                            <button class="btn btn-transparent flex-fill" id="btn-theme-dark">
+                                <i class="bi bi-moon-stars-fill text-primary me-2"></i> Gelap
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="d-block fw-bold mb-2 text-secondary small text-uppercase ls-1">Ukuran Teks</label>
+                        <div class="btn-group w-100" role="group">
+                            <button type="button" class="btn btn-outline-secondary" onclick="changeFontSize('small')">A-</button>
+                            <button type="button" class="btn btn-outline-secondary active" onclick="changeFontSize('normal')">Normal</button>
+                            <button type="button" class="btn btn-outline-secondary" onclick="changeFontSize('large')">A+</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-primary rounded-pill px-4 w-100" data-bs-dismiss="modal">Simpan & Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

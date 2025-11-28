@@ -1,0 +1,331 @@
+/* ==========================================================================
+   1. CSS VARIABLES & THEME SETUP
+   Konsep: Neo-Nusantara (Merah Modern, Putih Bersih, Emas Aksen)
+   ========================================================================== */
+:root {
+    /* --- COLOR PALETTE (Light Mode Default) --- */
+    --primary-color: #E63946;       /* Merah Modern */
+    --primary-hover: #D62828;       /* Merah Lebih Gelap */
+    --secondary-bg: #F8F9FA;        /* Putih Tulang (Background) */
+    --text-main: #1D3557;           /* Biru Gelap (Teks Utama) */
+    --text-muted: #6C757D;          /* Abu-abu (Teks Sekunder) */
+    --accent-color: #FFB703;        /* Emas/Kuning (Highlight) */
+    --success-color: #2A9D8F;       /* Hijau (Benar) */
+    --card-bg: #FFFFFF;             /* Warna Kartu */
+    --border-color: #E9ECEF;        /* Garis Tipis */
+    
+    /* --- TYPOGRAPHY --- */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-reading: 'Lora', serif;  /* Khusus Pasal & Materi */
+
+    /* --- SHADOWS & RADIUS --- */
+    --shadow-sm: 0 2px 8px rgba(29, 53, 87, 0.05);
+    --shadow-md: 0 8px 24px rgba(29, 53, 87, 0.08);
+    --shadow-lg: 0 12px 40px rgba(29, 53, 87, 0.12);
+    --radius-md: 12px;
+    --radius-lg: 20px;
+}
+
+/* --- DARK MODE OVERRIDES --- */
+/* Kelas ini akan ditambahkan ke body via JavaScript */
+body.dark-mode {
+    --primary-color: #EF5350;       /* Merah yang lebih soft untuk mata */
+    --primary-hover: #E57373;
+    --secondary-bg: #121212;        /* Abu Arang Gelap */
+    --text-main: #E2E8F0;           /* Putih Abu-abu */
+    --text-muted: #A0AEC0;
+    --accent-color: #FFC107;
+    --card-bg: #1E293B;             /* Biru Malam Gelap */
+    --border-color: #334155;
+    
+    /* Shadow di mode gelap lebih ke glow atau hilang */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   2. GLOBAL RESET & BASE STYLES
+   ========================================================================== */
+html {
+    scroll-behavior: smooth; /* Scroll halus saat klik link anchor */
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-main);
+    background-color: var(--secondary-bg);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-heading);
+    color: var(--text-main);
+    font-weight: 700; /* Bold */
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+/* Scrollbar Custom (Agar terlihat modern) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--secondary-bg);
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ==========================================================================
+   3. COMPONENTS & UTILITIES
+   ========================================================================== */
+
+/* --- BUTTONS --- */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-2px); /* Efek naik sedikit */
+    box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+}
+.btn-warning {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #000;
+}
+
+/* --- CARDS (Kartu Materi) --- */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+/* --- BADGES --- */
+.badge {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   4. LAYOUT SECTIONS
+   ========================================================================== */
+
+/* --- NAVBAR --- */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.9) !important; /* Efek transparan */
+    backdrop-filter: blur(10px); /* Efek kaca buram (Glassmorphism) */
+    border-bottom: 1px solid var(--border-color);
+}
+
+body.dark-mode .navbar {
+    background-color: rgba(30, 41, 59, 0.9) !important;
+}
+
+.nav-link {
+    color: var(--text-main) !important;
+    font-weight: 500;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+/* --- HERO SECTION (Background Batik Pattern CSS) --- */
+.hero-section {
+    position: relative;
+    background-color: var(--secondary-bg);
+    /* Pattern Polkadot Halus (Simulasi Batik Minimalis) */
+    background-image: radial-gradient(var(--text-muted) 1px, transparent 1px);
+    background-size: 30px 30px; /* Jarak antar titik */
+    padding: 6rem 0 4rem 0;
+}
+
+/* Style untuk Kotak Rounded */
+.hero-box-rounded {
+    /* Agar kotak menyesuaikan ukuran gambar di dalamnya */
+    display: inline-block;
+    
+    /* Memberi jarak antara gambar dan tepi kotak (padding putih) */
+    padding: 20px; 
+    
+    /* Warna latar belakang kotak (Putih) */
+    background-color: #ffffff;
+    
+    /* MEMBUAT UJUNG TIDAK RUNCING */
+    /* Semakin besar angkanya, semakin tumpul sudutnya */
+    border-radius: 40px; 
+    
+    /* Memberi border tipis warna Emas (sesuai tema --accent-color) */
+    /* Opsional: Jika tidak suka border, hapus baris ini */
+    border: 3px solid #FFB703;
+    
+    /* Memberi bayangan agar terlihat timbul (3D effect) */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    
+    /* Pastikan z-index aman */
+    position: relative;
+    z-index: 2;
+}
+
+/* Style khusus untuk gambarnya agar ikut melengkung sedikit */
+.hero-img {
+    /* Sudut gambar juga kita tumpulkan sedikit (25px) agar serasi dengan kotaknya */
+    border-radius: 25px;
+    
+    /* Pastikan lebar gambar responsif */
+    max-width: 100%;
+    height: auto;
+}
+
+/* Overlay agar pattern tidak terlalu kontras */
+.pattern-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, var(--secondary-bg) 90%);
+    pointer-events: none;
+    z-index: 1;
+}
+body.dark-mode .pattern-overlay {
+    background: linear-gradient(180deg, rgba(18,18,18,0) 0%, var(--secondary-bg) 90%);
+}
+
+/* Animasi gambar Hero melayang */
+.floating-anim {
+    animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+    0% { transform: translatey(0px); }
+    50% { transform: translatey(-20px); }
+    100% { transform: translatey(0px); }
+}
+
+/* ==========================================================================
+   5. SPECIFIC PAGES STYLES
+   ========================================================================== */
+
+/* --- HALAMAN MATERI (READING MODE) --- */
+.content-area {
+    font-family: var(--font-reading);
+    font-size: 1.125rem; /* 18px default */
+    color: var(--text-main);
+    line-height: 1.8;
+}
+
+/* Sidebar Materi Active State */
+.list-group-item {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border-color: var(--border-color);
+}
+.list-group-item.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Side Note / Tooltip Kata Sulit */
+.tooltip-term {
+    border-bottom: 2px dashed var(--accent-color);
+    cursor: help;
+    position: relative;
+    color: var(--text-main);
+    font-weight: 600;
+}
+.tooltip-term:hover {
+    background-color: rgba(255, 183, 3, 0.2);
+}
+
+/* --- HALAMAN KUIS --- */
+.option-btn {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border: 2px solid var(--border-color);
+    text-align: left;
+}
+
+.option-btn:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(230, 57, 70, 0.05);
+}
+
+/* Progress Bar Kuis */
+.progress {
+    background-color: var(--border-color);
+    border-radius: 10px;
+}
+.progress-bar {
+    background-color: var(--accent-color);
+}
+
+/* ==========================================================================
+   6. UTILITIES & ANIMATIONS
+   ========================================================================== */
+
+/* Efek Hover Scale */
+.hover-scale {
+    transition: transform 0.2s ease;
+}
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+/* Efek Glassmorphism untuk Panel Hasil Pencarian */
+.backdrop-blur {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Animasi Fade In (Saat halaman dimuat) */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+main, section {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Helper Class untuk Teks */
+.text-justify { text-align: justify; }
+.ls-1 { letter-spacing: 1px; }
+.cursor-pointer { cursor: pointer; }
+
+/* ==========================================================================
+   7. ACCESSIBILITY (Keyboard & Focus)
+   ========================================================================== */
+   
+/* Custom Focus Ring agar lebih jelas daripada default browser */
+:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Helper (Opsional) */
+@media (prefers-contrast: more) {
+    :root {
+        --primary-color: #D00000;
+        --text-main: #000000;
+        --text-muted: #222222;
+    }
+}

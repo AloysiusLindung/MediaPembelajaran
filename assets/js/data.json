@@ -1,0 +1,389 @@
+{
+  "meta": {
+    "sekolah": "Pendidikan Pancasila SMP & SMA",
+    "guru": "Yohana Impian Tamba",
+    "mata_pelajaran": "Pendidikan Pancasila",
+    "kelas": "SMP & SMA",
+    "tahun_ajaran": "2025/2026",
+    "kurikulum": "Kurikulum Merdeka"
+  },
+  "bab": [
+    {
+      "id": 1,
+      "judul": "Harmonisasi Hak & Kewajiban Asasi Manusia",
+      "sub_judul": "Dalam Perspektif Pancasila",
+      "icon": "assets/img/LogoPancasila.png",
+      "estimasi_waktu": "20 Menit",
+      "progress": 0,
+      "kompetensi_dasar": "3.1 Menganalisis pelanggaran hak asasi manusia dalam perspektif Pancasila dalam kehidupan berbangsa dan bernegara.",
+      "materi": [
+        {
+          "tipe": "intro",
+          "judul_sub": "Pengantar: Hak vs Kewajiban",
+          "isi": "Pernahkah kamu menuntut hakmu tapi lupa melakukan kewajibanmu? Hak dan Kewajiban ibarat dua sisi mata uang yang tidak bisa dipisahkan. Di bab ini, kita akan membedah bagaimana Pancasila menyeimbangkan keduanya."
+        },
+        {
+          "tipe": "quote",
+          "judul_sub": "1. Definisi HAM",
+          "isi": "HAM adalah seperangkat hak yang melekat pada hakikat dan keberadaan manusia sebagai makhluk Tuhan Yang Maha Esa dan merupakan anugerah-Nya yang wajib dihormati, dijunjung tinggi, dan dilindungi oleh negara, hukum, pemerintah, dan setiap orang.",
+          "sumber": "UU No. 39 Tahun 1999, Pasal 1"
+        },
+        {
+          "tipe": "list",
+          "judul_sub": "2. Ciri-Ciri Khusus HAM",
+          "deskripsi": "Berbeda dengan hak biasa (seperti hak waris), HAM memiliki 4 ciri khusus yang absolut:",
+          "poin": [
+            "<strong>Hakiki:</strong> Hak itu sudah ada sejak lahir sebagai pemberian Tuhan, bukan pemberian negara.",
+            "<strong>Universal:</strong> Berlaku untuk semua orang tanpa memandang suku, agama, ras, atau gender.",
+            "<strong>Tidak Dapat Dicabut:</strong> HAM tidak bisa diserahkan kepada orang lain atau dirampas.",
+            "<strong>Tidak Dapat Dibagi:</strong> Semua orang berhak mendapatkan semua hak (sipil, politik, ekonomi, sosial, dan budaya)."
+          ]
+        },
+        {
+          "tipe": "tabel_konsep",
+          "judul_sub": "3. Substansi HAM dalam Pancasila",
+          "deskripsi": "Pancasila menjamin HAM melalui nilai-nilai yang terkandung di dalamnya. Berikut detailnya:",
+          "data": [
+            { "sila": "Sila 1", "isi": "Menjamin kemerdekaan memeluk agama & beribadah. (Bebas dari paksaan keyakinan)." },
+            { "sila": "Sila 2", "isi": "Menempatkan manusia sesuai harkat martabatnya (Equality before the Law)." },
+            { "sila": "Sila 3", "isi": "Menekankan semangat persatuan dan rela berkorban (Hak kolektif)." },
+            { "sila": "Sila 4", "isi": "Menjamin hak berpendapat dan berdemokrasi secara musyawarah." },
+            { "sila": "Sila 5", "isi": "Mengakui hak milik perorangan dan dilindungi pemanfaatannya oleh negara." }
+          ]
+        },
+        {
+          "tipe": "video",
+          "judul_sub": "4. Video Pendalaman",
+          "youtube_url": "https://www.youtube.com/watch?v=_ytcEwr4Cmg&t=3s", 
+          "deskripsi": "Simak video berikut untuk memahami Konsep HAM di Indonesia."
+        },
+        {
+          "tipe": "teks_highlight",
+          "judul_sub": "5. Instrumen Hukum di Indonesia",
+          "isi": "Selain Pancasila, payung hukum HAM di Indonesia meliputi: <strong>UUD 1945 (Pasal 28A-28J)</strong>, <strong>Tap MPR No. XVII/1998</strong>, dan <strong>UU No. 26 Tahun 2000</strong> tentang Pengadilan HAM."
+        },
+        {
+          "tipe": "kasus",
+          "judul_sub": "Studi Kasus: Tragedi Marsinah",
+          "skenario": "Marsinah adalah seorang buruh pabrik yang memimpin aksi mogok kerja menuntut kenaikan upah sesuai UMR. Setelah rekan-rekannya dipanggil paksa oleh aparat militer, Marsinah mendatangi markas untuk protes. Malamnya ia menghilang. Tiga hari kemudian, mayatnya ditemukan dengan tanda-tanda penyiksaan berat. Kasus ini menjadi sejarah kelam pembungkaman hak buruh.",
+          "pertanyaan_kritis": "Sebagai generasi muda yang sadar hukum, bagaimana pandanganmu terhadap penyelesaian kasus ini?",
+          "opsi_keputusan": [
+            "Biarkan berlalu, karena mengungkit kasus lama dapat mengganggu stabilitas politik negara.",
+            "Mendesak pemerintah membuka kembali penyelidikan (Investigasi) secara transparan demi keadilan korban.",
+            "Melakukan aksi anarkis dan merusak fasilitas umum sebagai bentuk kemarahan."
+          ],
+          "feedback": [
+            "Kurang Tepat. Membiarkan pelanggaran HAM (Impunitas) justru melanggar Sila ke-2 dan ke-5 Pancasila.",
+            "Sangat Tepat! Keadilan tidak mengenal kedaluwarsa. Penegakan hukum harus transparan sesuai UU No. 39 Tahun 1999.",
+            "Salah. Memperjuangkan HAM tidak boleh dilakukan dengan cara melanggar HAM orang lain (merusak fasilitas)."
+          ]
+        }
+      ],
+      "kuis": [
+        { 
+          "pertanyaan": "Hak Asasi Manusia memiliki ciri 'Universal', artinya...", 
+          "opsi": ["Hanya berlaku bagi warga negara tertentu", "Berlaku bagi semua orang tanpa memandang status", "Bisa dipindahkan ke orang lain", "Hanya berlaku bagi orang dewasa"], 
+          "jawaban_benar": 1 
+        },
+        { 
+          "pertanyaan": "Pasal 28E Ayat (3) UUD 1945 secara spesifik menjamin hak setiap orang untuk...", 
+          "opsi": ["Memeluk agama", "Hidup sejahtera", "Kebebasan berserikat, berkumpul, dan berpendapat", "Mendapat pendidikan"], 
+          "jawaban_benar": 2 
+        },
+        { 
+          "pertanyaan": "Menghormati hak-hak orang lain dalam antrean atau lalu lintas adalah pengamalan Pancasila sila ke...", 
+          "opsi": ["Satu (Ketuhanan)", "Dua (Kemanusiaan)", "Tiga (Persatuan)", "Lima (Keadilan Sosial)"], 
+          "jawaban_benar": 3 
+        },
+        { 
+          "pertanyaan": "Berikut ini yang termasuk dalam kategori Pelanggaran HAM Berat adalah...", 
+          "opsi": ["Pencurian dengan kekerasan", "Kejahatan Genosida & Kejahatan thd Kemanusiaan", "Korupsi uang negara", "Pencemaran nama baik"], 
+          "jawaban_benar": 1 
+        },
+        { 
+          "pertanyaan": "Lembaga mandiri yang kedudukannya setingkat dengan lembaga negara lainnya untuk mengkaji & memantau HAM adalah...", 
+          "opsi": ["LPAI", "Komnas HAM", "KontraS", "DPR"], 
+          "jawaban_benar": 1 
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "judul": "Dinamika Nilai-Nilai Pancasila",
+      "sub_judul": "Dari Konsep ke Implementasi Nyata",
+      "icon": "assets/img/LogoPancasila.png",
+      "estimasi_waktu": "20 Menit",
+      "progress": 0,
+      "kompetensi_dasar": "3.2 Mengkategorikan nilai dasar, instrumental, dan praksis sila-sila Pancasila dalam kehidupan berbangsa.",
+      "materi": [
+        {
+          "tipe": "intro",
+          "judul_sub": "Pengantar: Pancasila sebagai Ideologi Terbuka",
+          "isi": "Pancasila bukan benda mati yang kaku. Ia adalah 'Ideologi Terbuka' yang mampu beradaptasi dengan perkembangan zaman tanpa kehilangan jati dirinya. Bagaimana cara kerjanya? Mari kita bedah tiga lapis nilainya."
+        },
+        {
+          "tipe": "list",
+          "judul_sub": "1. Tiga Tingkatan Nilai Pancasila",
+          "deskripsi": "Agar bisa diterapkan, Pancasila dibagi menjadi tiga dimensi nilai:",
+          "poin": [
+            "<strong>Nilai Dasar:</strong> Esensi mutlak yang tidak boleh berubah (Ketuhanan, Kemanusiaan, Persatuan, Kerakyatan, Keadilan).",
+            "<strong>Nilai Instrumental:</strong> Penjabaran hukum yang bisa disesuaikan zaman (UUD 1945, UU, Perda). Contoh: Peraturan Pemilu bisa berubah, tapi prinsip demokrasinya tetap.",
+            "<strong>Nilai Praksis:</strong> Realisasi nyata dalam kehidupan sehari-hari. Inilah ujian sesungguhnya apakah kita Pancasilais atau tidak."
+          ]
+        },
+        {
+          "tipe": "tabel_konsep",
+          "judul_sub": "2. Butir-Butir Implementasi (Nilai Praksis)",
+          "deskripsi": "Berikut adalah contoh konkret penerapan sila dalam kehidupan modern:",
+          "data": [
+            { "sila": "Sila 1", "isi": "Tidak memaksakan agama ke orang lain & Mengembangkan toleransi (Hormat-menghormati)." },
+            { "sila": "Sila 2", "isi": "Berani membela kebenaran (Anti-Bullying) & Gemar melakukan kegiatan kemanusiaan." },
+            { "sila": "Sila 3", "isi": "Cinta produk dalam negeri (Nasionalisme Ekonomi) & Menjaga nama baik bangsa di internet." },
+            { "sila": "Sila 4", "isi": "Tidak *Walk Out* saat musyawarah (Menghargai pendapat) & Tidak memaksakan kehendak." },
+            { "sila": "Sila 5", "isi": "Hidup hemat (Anti-Hedonisme) & Menghargai hasil karya orang lain (Tidak membajak/plagiat)." }
+          ]
+        },
+        {
+          "tipe": "quote",
+          "judul_sub": "3. Inti Gotong Royong",
+          "isi": "Jikalau saya peras yang lima menjadi satu, maka dapatlah saya satu perkataan Indonesia yang tulen, yaitu perkataan 'Gotong Royong'. Prinsipnya adalah: Kekeluargaan.",
+          "sumber": "Ir. Soekarno (Pidato 1 Juni 1945)"
+        },
+        {
+          "tipe": "video",
+          "judul_sub": "4. Video Pembelajaran",
+          "youtube_url": "https://www.youtube.com/watch?v=y2LUKrMfC6g",
+          "deskripsi": "Simak video berikut untuk memahami lebih dalam bagaimana nilai Pancasila bekerja dalam sistem pemerintahan dan sosial."
+        },
+        {
+          "tipe": "kasus",
+          "judul_sub": "Studi Kasus: Hoaks & Ujaran Kebencian",
+          "skenario": "Di media sosial, beredar berita bohong (hoaks) yang memfitnah salah satu kelompok agama tertentu memicu kemarahan publik. Teman sekelasmu, Andi, terpancing emosi dan hendak membagikan ulang (share) postingan tersebut dengan caption provokatif. Sebagai teman yang memahami Pancasila, apa yang harus kamu lakukan?",
+          "pertanyaan_kritis": "Analisis tindakan Andi berdasarkan Sila ke-3 (Persatuan) dan Sila ke-2 (Adab)!",
+          "opsi_keputusan": [
+            "Ikut membagikan postingan tersebut agar viral dan semua orang tahu.",
+            "Menegur Andi secara personal (DM) dan memintanya melakukan cek fakta (Tabayyun) sebelum posting.",
+            "Diam saja (Masa Bodoh) karena takut dimusuhi Andi."
+          ],
+          "feedback": [
+            "Salah Besar. Menyebarkan kebencian melanggar Sila ke-3 (Memecah belah) dan Sila ke-2 (Tidak beradab).",
+            "Sangat Tepat! Ini mencerminkan Sila ke-3 (Menjaga Persatuan) dan Sila ke-4 (Mengedepankan akal sehat/musyawarah).",
+            "Kurang Tepat. Sikap apatis (masa bodoh) membiarkan kejahatan terjadi. Kita wajib saling mengingatkan dalam kebaikan."
+          ]
+        }
+      ],
+      "kuis": [
+        { 
+          "pertanyaan": "Nilai yang terkandung dalam peraturan perundang-undangan (seperti UUD 1945 atau UU) disebut nilai...", 
+          "opsi": ["Dasar", "Instrumental", "Praksis", "Rohaniah"], 
+          "jawaban_benar": 1 
+        },
+        { 
+          "pertanyaan": "Sikap 'Gemar melakukan kegiatan kemanusiaan' dan 'Berani membela kebenaran' adalah pengamalan sila ke...", 
+          "opsi": ["Satu", "Dua", "Tiga", "Lima"], 
+          "jawaban_benar": 1 
+        },
+        { 
+          "pertanyaan": "Dalam kasus konflik sosial di media sosial, tindakan menyaring informasi sebelum sharing (Saring sebelum Sharing) adalah wujud...", 
+          "opsi": ["Tanggung jawab warga negara yang cerdas", "Ketakutan terhadap UU ITE", "Pencitraan semata", "Sikap individualis"], 
+          "jawaban_benar": 0 
+        },
+        { 
+          "pertanyaan": "Mengembangkan rasa kebanggaan berkebangsaan dan bertanah air Indonesia (Nasionalisme) merupakan inti dari sila...", 
+          "opsi": ["Ketuhanan", "Kemanusiaan", "Persatuan Indonesia", "Keadilan Sosial"], 
+          "jawaban_benar": 2 
+        },
+        { 
+          "pertanyaan": "Menghormati hak orang lain, suka memberi pertolongan, dan menjauhi sikap pemerasan adalah butir pengamalan sila...", 
+          "opsi": ["Keadilan Sosial (Sila 5)", "Kerakyatan (Sila 4)", "Persatuan (Sila 3)", "Kemanusiaan (Sila 2)"], 
+          "jawaban_benar": 0 
+        },
+        { 
+          "pertanyaan": "Lambang rantai emas berbentuk segi empat dan lingkaran pada perisai Garuda melambangkan...", 
+          "opsi": ["Hubungan manusia satu sama lain yang saling membantu (Pria & Wanita)", "Kekuatan militer", "Pertanian dan Perkebunan", "Cahaya kerohanian"], 
+          "jawaban_benar": 0 
+        },
+        { 
+          "pertanyaan": "Pengambilan keputusan melalui musyawarah mufakat adalah ciri khas demokrasi Pancasila yang menolak paham...", 
+          "opsi": ["Liberal & Otoriter", "Sosialis", "Agamis", "Tradisional"], 
+          "jawaban_benar": 0 
+        },
+        { 
+          "pertanyaan": "Manakah yang BUKAN merupakan nilai dasar Pancasila?", 
+          "opsi": ["Ketuhanan", "Kemanusiaan", "Kekayaan", "Keadilan"], 
+          "jawaban_benar": 2 
+        },
+        { 
+          "pertanyaan": "Sikap hidup bergaya mewah (hedonisme) bertentangan dengan Pancasila terutama sila ke...", 
+          "opsi": ["1", "2", "3", "5"], 
+          "jawaban_benar": 3 
+        },
+        { 
+          "pertanyaan": "Pancasila disebut sebagai 'Pandangan Hidup Bangsa' (Weltanschauung), artinya...", 
+          "opsi": ["Pancasila hanya hiasan negara", "Pancasila menjadi petunjuk arah semua kegiatan hidup bangsa", "Pancasila adalah alat politik", "Pancasila adalah hukum pidana"], 
+          "jawaban_benar": 1 
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "judul": "Sistem dan Dinamika Demokrasi Pancasila",
+      "sub_judul": "Membangun Kedaulatan Rakyat yang Beradab",
+      "icon": "assets/img/LogoPancasila.png",
+      "estimasi_waktu": "25 Menit",
+      "progress": 0,
+      "kompetensi_dasar": "3.3 Menganalisis sistem dan dinamika demokrasi Pancasila sesuai dengan UUD NRI Tahun 1945.",
+      "materi": [
+        {
+          "tipe": "intro",
+          "judul_sub": "Pengantar: Apa itu Demokrasi?",
+          "isi": "Secara etimologis, Demokrasi berasal dari bahasa Yunani: 'Demos' (Rakyat) dan 'Kratos' (Kekuasaan). Tapi, apakah demokrasi hanya soal Pemilu 5 tahun sekali? Tentu tidak. Demokrasi adalah cara hidup."
+        },
+        {
+          "tipe": "list",
+          "judul_sub": "1. Prinsip-Prinsip Demokrasi Pancasila",
+          "deskripsi": "Demokrasi Pancasila berbeda dengan Demokrasi Liberal (Barat). Ciri khas kita adalah:",
+          "poin": [
+            "<strong>BerkeTuhanan Yang Maha Esa:</strong> Penyelenggaraan negara harus taat pada nilai moral agama.",
+            "<strong>Kecerdasan Spiritual & Rasional:</strong> Bukan demokrasi emosional atau kekuatan otot.",
+            "<strong>Kedaulatan Rakyat:</strong> Rakyat pemegang kekuasaan tertinggi, tapi dibatasi oleh hukum (UUD).",
+            "<strong>Pembagian Kekuasaan:</strong> Tidak boleh ada kekuasaan mutlak (Tirani) di satu tangan (Check and Balances)."
+          ]
+        },
+        {
+          "tipe": "tabel_konsep",
+          "judul_sub": "2. Periodisasi Sejarah Demokrasi Indonesia",
+          "deskripsi": "Indonesia pernah mencoba berbagai 'rasa' demokrasi sebelum kembali ke jalur yang benar:",
+          "data": [
+            { "sila": "1945-1959", "isi": "Demokrasi Parlementer (Liberal). Jatuh bangun kabinet sangat cepat, tidak stabil." },
+            { "sila": "1959-1965", "isi": "Demokrasi Terpimpin (Orde Lama). Kekuasaan terpusat di Presiden Soekarno." },
+            { "sila": "1966-1998", "isi": "Demokrasi Pancasila (Orde Baru). Stabil tapi otoriter, kebebasan pers dibungkam." },
+            { "sila": "1998-Kini", "isi": "Demokrasi Reformasi. Kebebasan pers, Pemilu langsung, desentralisasi daerah." }
+          ]
+        },
+        {
+          "tipe": "video",
+          "judul_sub": "3. Jejak Sejarah Demokrasi",
+          "youtube_url": "https://www.youtube.com/watch?v=h32LjRkbNCM",
+          "deskripsi": "Saksikan video sejarah singkat bagaimana bangsa ini belajar menemukan bentuk demokrasi yang ideal."
+        },
+        {
+          "tipe": "quote",
+          "judul_sub": "4. Asas Pemilu (LUBER JURDIL)",
+          "isi": "Pemilihan Umum dilaksanakan secara Langsung, Umum, Bebas, Rahasia, Jujur, dan Adil setiap lima tahun sekali.",
+          "sumber": "UUD 1945 Pasal 22E Ayat 1"
+        },
+        {
+          "tipe": "kasus",
+          "judul_sub": "Studi Kasus: Dilema 'Serangan Fajar'",
+          "skenario": "Menjelang Pemilihan Ketua OSIS, kandidat A (sahabat dekatmu) diam-diam membagikan voucher pulsa gratis kepada siswa lain agar memilihnya. Dia memintamu tutup mulut dengan alasan 'Ini cuma strategi, semua orang juga melakukannya'. Di sisi lain, Kandidat B sangat kompeten tapi miskin dana kampanye.",
+          "pertanyaan_kritis": "Sebagai siswa yang paham integritas, apa yang sebenarnya dipertaruhkan di sini?",
+          "opsi_keputusan": [
+            "Mendukung sahabat (Kandidat A) karena solidaritas pertemanan lebih penting daripada politik sekolah.",
+            "Melaporkan tindakan tersebut ke Panitia Pemilihan (MPK) dengan bukti, meskipun berisiko dimusuhi sahabat.",
+            "Menerima voucher tersebut tapi diam-diam memilih Kandidat B di bilik suara (Ambil uangnya, jangan pilih orangnya)."
+          ],
+          "feedback": [
+            "Salah. Solidaritas dalam kejahatan (konspirasi) bukanlah nilai Pancasila. Kamu mendukung korupsi dini.",
+            "Sangat Tepat! Ini adalah ujian integritas berat. Melaporkan kecurangan menyelamatkan sistem demokrasi sekolah.",
+            "Kurang Tepat. Pragmatis memang, tapi membiarkan praktik suap tetap berjalan berarti menormalkan budaya korupsi."
+          ]
+        }
+      ],
+      "kuis": [
+        { 
+          "pertanyaan": "Pelaksanaan demokrasi di Indonesia berlandaskan pada UUD 1945 Pasal 1 Ayat (2) yang berbunyi...", 
+          "opsi": ["Negara Indonesia adalah negara hukum", "Kedaulatan berada di tangan rakyat dan dilaksanakan menurut UUD", "Presiden dibantu oleh menteri-menteri", "Majelis Permusyawaratan Rakyat bersidang sedikitnya sekali dalam lima tahun"], 
+          "jawaban_benar": 1 
+        },
+        { 
+          "pertanyaan": "Salah satu indikator negara demokratis menurut Affan Gaffar adalah 'Rotasi Kekuasaan', artinya...", 
+          "opsi": ["Kekuasaan dipegang seumur hidup", "Pergantian pemimpin dilakukan secara teratur dan damai", "Kudeta militer diperbolehkan", "Jabatan presiden diwariskan ke anak"], 
+          "jawaban_benar": 1 
+        },
+        { 
+          "pertanyaan": "Pada masa Orde Baru (1966-1998), praktik demokrasi mengalami penyimpangan berupa...", 
+          "opsi": ["Kebebasan pers yang berlebihan", "Dominasi eksekutif (Presiden) yang sangat kuat", "Parlemen yang terlalu kuat", "Rakyat bebas berdemonstrasi"], 
+          "jawaban_benar": 1 
+        },
+        { 
+          "pertanyaan": "Asas Pemilu 'Rahasia' menjamin bahwa...", 
+          "opsi": ["Hasil pemilu tidak boleh diketahui publik", "Pemilih memberikan suaranya tanpa diketahui oleh siapa pun pilihan itu", "Calon pemimpin harus dirahasiakan", "Panitia pemilu bekerja sembunyi-sembunyi"], 
+          "jawaban_benar": 1 
+        },
+        { 
+          "pertanyaan": "Politik uang (Money Politics) dalam Pilkada/Pemilu sangat berbahaya karena...", 
+          "opsi": ["Membantu ekonomi rakyat miskin", "Menghasilkan pemimpin yang korup untuk balik modal", "Mempercepat proses pemilihan", "Meningkatkan partisipasi pemilih"], 
+          "jawaban_benar": 1 
+        },
+        { 
+          "pertanyaan": "Trias Politika membagi kekuasaan menjadi tiga lembaga independen, yaitu...", 
+          "opsi": ["Legislatif, Eksekutif, Yudikatif", "Presiden, MPR, DPR", "Polisi, Jaksa, Hakim", "Desa, Kota, Provinsi"], 
+          "jawaban_benar": 0 
+        },
+        { 
+          "pertanyaan": "Contoh perilaku demokratis di lingkungan sekolah adalah...", 
+          "opsi": ["Memaksakan pendapat saat rapat kelas", "Menerima hasil pemilihan ketua kelas dengan lapang dada", "Membolos saat upacara bendera", "Menyontek saat ujian"], 
+          "jawaban_benar": 1 
+        },
+        { 
+          "pertanyaan": "Demonstrasi atau unjuk rasa diperbolehkan dalam negara demokrasi, ASALKAN...", 
+          "opsi": ["Dilakukan dengan merusak pagar gedung DPR", "Dilakukan tertib, damai, dan tidak mengganggu hak orang lain", "Membawa senjata tajam untuk jaga diri", "Dilakukan malam hari tanpa izin"], 
+          "jawaban_benar": 1 
+        },
+        { 
+          "pertanyaan": "Lembaga negara yang berwenang mengubah dan menetapkan UUD adalah...", 
+          "opsi": ["DPR", "Presiden", "MPR", "MK"], 
+          "jawaban_benar": 2 
+        },
+        { 
+          "pertanyaan": "Demokrasi Pancasila mengutamakan pengambilan keputusan melalui...", 
+          "opsi": ["Voting (Suara terbanyak) semata", "Musyawarah untuk mufakat", "Perintah atasan", "Suara terkeras"], 
+          "jawaban_benar": 1 
+        }
+      ]
+    }
+  ],
+  "referensi_hukum": [
+    {
+      "pasal": "Pasal 1 Ayat 3",
+      "isi": "Negara Indonesia adalah negara hukum.",
+      "kata_kunci": ["hukum", "negara hukum", "dasar negara"]
+    },
+    {
+      "pasal": "Pasal 28A",
+      "isi": "Setiap orang berhak untuk hidup serta berhak mempertahankan hidup dan kehidupannya.",
+      "kata_kunci": ["hidup", "hak hidup", "ham"]
+    },
+    {
+      "pasal": "Pasal 28E Ayat 3",
+      "isi": "Setiap orang berhak atas kebebasan berserikat, berkumpul, dan mengeluarkan pendapat.",
+      "kata_kunci": ["pendapat", "demo", "demonstrasi", "serikat"]
+    },
+    {
+      "pasal": "Pasal 29 Ayat 2",
+      "isi": "Negara menjamin kemerdekaan tiap-tiap penduduk untuk memeluk agamanya masing-masing dan untuk beribadat menurut agamanya dan kepercayaannya itu.",
+      "kata_kunci": ["agama", "ibadah", "tuhan", "keyakinan"]
+    },
+    {
+      "pasal": "Pasal 30 Ayat 1",
+      "isi": "Tiap-tiap warga negara berhak dan wajib ikut serta dalam usaha pertahanan dan keamanan negara.",
+      "kata_kunci": ["bela negara", "pertahanan", "keamanan", "tni", "polri"]
+    },
+    {
+      "pasal": "Pasal 31 Ayat 1",
+      "isi": "Setiap warga negara berhak mendapat pendidikan.",
+      "kata_kunci": ["sekolah", "pendidikan", "belajar", "ilmu"]
+    },
+    {
+      "pasal": "Pasal 33 Ayat 3",
+      "isi": "Bumi dan air dan kekayaan alam yang terkandung di dalamnya dikuasai oleh negara dan dipergunakan untuk sebesar-besar kemakmuran rakyat.",
+      "kata_kunci": ["ekonomi", "alam", "sumber daya", "kesejahteraan"]
+    },
+    {
+      "pasal": "Pasal 34 Ayat 1",
+      "isi": "Fakir miskin dan anak-anak yang terlantar dipelihara oleh negara.",
+      "kata_kunci": ["miskin", "sosial", "bantuan", "yatim"]
+    }
+  ]
+}

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Pancasila - Uji Pemahamanmu</title>
+
+    <!-- LOAD SEMUA FONT YANG DIBUTUHKAN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@1,700&family=Poppins:wght@600;700;800&family=Sacramento&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Script HTML2Canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* --- CSS UTAMA HALAMAN KUIS --- */
+        body {
+            background-color: #F0F4F8;
+            min-height: 100vh;
+        }
+        .game-section { transition: all 0.3s ease-in-out; }
+        .option-btn { transition: all 0.1s; border-width: 2px; font-weight: 500; }
+        .option-btn:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .correct-answer { background-color: #2A9D8F !important; color: white !important; border-color: #2A9D8F !important; }
+        .wrong-answer { background-color: #E63946 !important; color: white !important; border-color: #E63946 !important; animation: shake 0.5s; }
+        @keyframes shake { 0% { transform: translate(1px, 1px); } 50% { transform: translate(-1px, 2px); } 100% { transform: translate(1px, -2px); } }
+
+        /* --- DESAIN SERTIFIKAT "THE GOLDEN GARUDA" --- */
+        #sertifikat-node {
+            /* Dimensi Canvas HD */
+            width: 1200px;
+            height: 800px;
+            
+            /* Background Dasar */
+            background-color: #F8F9FA;
+            color: #1D3557;
+            font-family: 'Inter', sans-serif;
+            
+            /* Posisi Tersembunyi */
+            position: fixed;
+            left: -9999px;
+            top: 0;
+            
+            /* Layout Flex Utama */
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ddd; /* Border tipis utk debug */
+        }
+
+        /* 1. Watermark Garuda (Tengah) */
+        .cert-watermark {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 500px;
+            color: #000;
+            opacity: 0.03; /* Sangat tipis */
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* 2. Pattern Batik (Sisi Kiri & Kanan) */
+        .cert-pattern-left, .cert-pattern-right {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 60px;
+            background-image: radial-gradient(#FFB703 2px, transparent 2px); /* Simulasi Batik Titik */
+            background-size: 20px 20px;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        .cert-pattern-left { left: 0; border-right: 2px solid #FFB703; }
+        .cert-pattern-right { right: 0; border-left: 2px solid #FFB703; }
+
+        /* 3. Konten Utama (Di atas Watermark) */
+        .cert-content {
+            z-index: 2;
+            padding: 60px 100px; /* Padding dalam agar lega */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        /* Tipografi Khusus */
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        .font-lora { font-family: 'Lora', serif; }
+        .font-signature { font-family: 'Sacramento', cursive; }
+
+        .cert-title {
+            font-size: 48px;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        .student-name {
+            font-size: 64px;
+            color: #1D3557;
+            border-bottom: 3px solid #FFB703;
+            display: inline-block;
+            padding-bottom: 10px;
+            margin: 20px 0;
+        }
+
+        /* Kotak Nilai */
+        .score-box {
+            border: 2px solid #E9ECEF;
+            background: #fff;
+            padding: 15px 40px;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="d-flex flex-column">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-light bg-white shadow-sm py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="navbar-brand mb-0 h1 fw-bold text-primary">
+                <i class="bi bi-joystick me-2"></i> Zona Kuis
+            </span>
+            <a href="index.html" class="btn btn-outline-danger btn-sm rounded-pill px-3">
+                <i class="bi bi-x-lg me-1"></i> Keluar
+            </a>
+        </div>
+    </nav>
+
+    <main class="container my-auto py-4" style="max-width: 800px;">
+        <!-- BAGIAN INTRO (ID: quiz-intro) -->
+        <section id="quiz-intro" class="card border-0 shadow-lg rounded-4 p-4 text-center game-section">
+            <div class="card-body">
+                <img src="assets/img/LogoKuis.png" alt="Mulai Kuis" class="img-fluid mb-4" style="height: 180px;">
+                <h2 class="fw-bold font-poppins mb-3">Siap Menguji Pengetahuanmu?</h2>
+                <p class="text-muted mb-4">Pilih Bab materi, masukkan namamu, dan raih sertifikat!</p>
+                
+                <div class="row g-3 justify-content-center text-start">
+                    <div class="col-md-8">
+                        <label class="form-label fw-bold small text-uppercase">Nama Lengkap Siswa</label>
+                        <input type="text" id="input-nama" class="form-control form-control-lg bg-light border-0" placeholder="Contoh: Budi Santoso">
+                    </div>
+                    <div class="col-md-8">
+                        <label class="form-label fw-bold small text-uppercase">Pilih Materi Bab</label>
+                        <select id="select-bab" class="form-select form-select-lg bg-light border-0 cursor-pointer">
+                            <option value="" disabled selected>-- Pilih Bab --</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8 mt-4">
+                        <button id="btn-start" class="btn btn-primary btn-lg w-100 rounded-pill py-3 shadow-sm hover-scale" disabled>
+                            Mulai Mengerjakan <i class="bi bi-play-circle-fill ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BAGIAN GAMEPLAY (ID: quiz-gameplay) -->
+        <section id="quiz-gameplay" class="d-none game-section">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge bg-primary rounded-pill px-3 py-2" id="bab-badge">Bab 1</span>
+                <div class="text-end">
+                    <span class="text-muted small text-uppercase fw-bold">Waktu</span>
+                    <div class="fw-bold text-danger fs-5" id="timer-display">00:00</div>
+                </div>
+            </div>
+            <div class="progress mb-4" style="height: 10px;">
+                <div id="progress-bar" class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+            </div>
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                <div class="card-body p-4 p-md-5">
+                    <div class="d-flex justify-content-between mb-3">
+                        <small class="text-muted fw-bold">Pertanyaan <span id="current-soal-num">1</span>/<span id="total-soal-num">5</span></small>
+                    </div>
+                    <h4 class="fw-bold text-dark lh-base mb-4" id="question-text">Loading...</h4>
+                    <div class="d-grid gap-3" id="options-container"></div>
+                </div>
+                <div id="feedback-area" class="card-footer p-4 bg-light border-top-0 d-none">
+                    <div class="d-flex align-items-center gap-3">
+                        <div id="feedback-icon" class="rounded-circle bg-success text-white p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="bi bi-check-lg fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1" id="feedback-title">Jawaban Benar!</h6>
+                            <p class="mb-0 small text-secondary" id="feedback-desc">Kerja bagus.</p>
+                        </div>
+                        <button id="btn-next" class="btn btn-dark rounded-pill px-4 ms-auto">Lanjut <i class="bi bi-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BAGIAN RESULT (ID: quiz-result) -->
+        <section id="quiz-result" class="d-none text-center game-section">
+            <div class="card border-0 shadow-lg rounded-4 p-5">
+                <div class="mb-4">
+                    <img src="assets/img/kuisselesai.png" alt="Selesai" class="img-fluid mb-3" style="height: 150px;">
+                    <h2 class="fw-bold font-poppins">Kuis Selesai!</h2>
+                    <p class="text-muted">Jangan lupa unduh sertifikatmu.</p>
+                </div>
+                <div class="row justify-content-center mb-5">
+                    <div class="col-6 col-md-4">
+                        <div class="p-3 bg-light rounded-3 border">
+                            <small class="text-uppercase text-secondary fw-bold" style="font-size: 0.7rem;">Nilai Kamu</small>
+                            <div class="display-3 fw-bold text-primary" id="final-score">0</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="p-3 bg-light rounded-3 border">
+                            <small class="text-uppercase text-secondary fw-bold" style="font-size: 0.7rem;">Benar / Salah</small>
+                            <div class="fs-2 fw-bold text-dark mt-2">
+                                <span class="text-success" id="correct-count">0</span> / <span class="text-danger" id="wrong-count">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 col-md-8 mx-auto">
+                    <button id="btn-download-cert" class="btn btn-warning btn-lg text-dark fw-bold rounded-pill shadow-sm hover-scale">
+                        <i class="bi bi-download me-2"></i> Download Sertifikat
+                    </button>
+                    <a href="index.html" class="btn btn-link text-decoration-none text-muted mt-2">Kembali ke Beranda</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ======================================================= -->
+    <!-- TEMPLATE SERTIFIKAT "THE GOLDEN GARUDA" (HIDDEN)        -->
+    <!-- ======================================================= -->
+    <style>
+    
+    #sertifikat-node {
+        /* PENTING: Gunakan absolute, bukan fixed agar html2canvas bisa render full */
+        position: absolute; 
+        left: -9999px; /* Tetap sembunyikan di luar layar */
+        top: 0;
+        
+        /* Dimensi Tetap */
+        width: 1200px;
+        height: 800px;
+        
+        /* Styling Container */
+        background-color: #F8F9FA;
+        color: #1D3557;
+        
+        /* Padding dikurangi sedikit di bawah agar footer aman */
+        padding: 60px 60px 40px 60px; 
+        
+        box-sizing: border-box; /* Agar padding tidak menambah lebar total */
+        overflow: hidden; /* Potong apapun yang lewat dari 800px */
+        font-family: 'Poppins', sans-serif;
+        
+        /* Frame & Border */
+        border: 20px solid #fff;
+        outline: 2px solid #FFB703;
+    }
+
+    /* Watermark Garuda */
+    .cert-watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 500px;
+        opacity: 0.05;
+        color: #000;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* Pattern Batik */
+    .cert-pattern-left, .cert-pattern-right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 30px;
+        background-image: repeating-linear-gradient(45deg, #FFB703 0, #FFB703 2px, transparent 0, transparent 10px);
+        opacity: 0.3;
+        z-index: 1;
+    }
+    .cert-pattern-left { left: 0; border-right: 2px solid #FFB703; }
+    .cert-pattern-right { right: 0; border-left: 2px solid #FFB703; }
+
+    /* Konten Utama */
+    .cert-content {
+        position: relative;
+        z-index: 10;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Pastikan header di atas, footer di bawah */
+    }
+
+    /* Font Classes */
+    .font-lora { font-family: 'Lora', serif; }
+    .font-poppins { font-family: 'Poppins', sans-serif; }
+    .font-signature { font-family: 'Great Vibes', cursive; }
+    .ls-1 { letter-spacing: 2px; }
+</style>
+
+<div id="sertifikat-node">
+    
+    <i class="bi bi-shield-fill cert-watermark"></i> 
+    <div class="cert-pattern-left"></div>
+    <div class="cert-pattern-right"></div>
+
+    <div class="cert-content">
+        <header>
+            <div class="d-flex align-items-center justify-content-center gap-3 mb-2">
+                <i class="bi bi-shield-shaded text-danger fs-3"></i>
+                <span class="fw-bold font-poppins text-uppercase ls-1" style="color: #E63946;">Pancasila Interactive Module</span>
+            </div>
+            
+            <h1 id="cert-title" class="cert-title font-poppins fw-bold text-danger display-4 mb-0">SERTIFIKAT KOMPETENSI</h1>
+            <h5 class="font-poppins fw-normal text-muted text-uppercase ls-1 mt-2">Pendidikan Pancasila & Kewarganegaraan</h5>
+            
+            <div class="mx-auto mt-3" style="width: 200px; height: 4px; background-color: #FFB703; border-radius: 2px;"></div>
+        </header>
+
+        <div class="my-3">
+            <p class="fs-5 text-secondary fst-italic mb-1">Diberikan kepada:</p>
+            
+            <div id="cert-name" class="student-name font-lora fw-bold fst-italic text-dark py-2" style="font-size: 3.5rem; border-bottom: 1px dashed #ccc; display: inline-block; min-width: 400px;">
+                [Nama Siswa]
+            </div>
+
+            <p class="fs-5 text-secondary mt-3 mb-2">Telah menyelesaikan modul pembelajaran interaktif:</p>
+            
+            <h3 id="cert-bab" class="fw-bold font-poppins text-dark px-5">
+                Harmonisasi Hak dan Kewajiban Asasi Manusia
+            </h3>
+
+            <div class="score-box mt-4 border border-2 rounded-3 mx-auto px-4 py-2" style="width: fit-content; border-color: #E63946 !important;">
+                <small class="text-uppercase text-danger fw-bold ls-1 d-block mb-0" style="font-size: 0.8rem;">Nilai Kompetensi</small>
+                <span id="cert-score" class="font-poppins fw-bold" style="font-size: 3.5rem; color: #2A9D8F; line-height: 1;">
+                    100
+                </span>
+            </div>
+        </div>
+
+        <footer class="row align-items-end text-start mt-2">
+            <div class="col-4 ps-5">
+                <div class="mb-2 opacity-75 text-danger">
+                    <i class="bi bi-qr-code fs-1"></i> </div>
+                <p class="mb-0 small fw-bold text-secondary font-monospace">ID: <span id="cert-id">PAN-2025-XXX</span></p>
+                <p class="mb-0 small text-muted fst-italic">Generated: <span id="cert-date">28 Nov 2025</span></p>
+            </div>
+
+            <div class="col-4"></div>
+
+            <div class="col-4 text-center pe-5">
+                <p class="mb-1 font-poppins text-muted">Medan, <span id="cert-date-simple">28 Nov 2025</span></p>
+                <p class="mb-0 font-poppins fw-bold text-dark">Guru Pengampu</p>
+                
+                <div class="font-signature my-2" style="font-size: 48px; color: #1D3557; transform: rotate(-5deg);">
+                    Yohana I. T.
+                </div>
+
+                <div class="border-top border-dark border-2 w-75 mx-auto pt-1 font-poppins fw-bold text-uppercase small text-dark">
+                    Yohana Impian Tamba
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/report.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
